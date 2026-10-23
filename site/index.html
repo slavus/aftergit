@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AfterGit Merge Resolver for Eclipse</title>
-<meta name="description" content="AfterGit is a three-pane git conflict resolver for the Eclipse IDE and EGit: ours, the result and theirs side by side, with safe automatic resolution you can review.">
+<title>AfterGit: a three-pane merge resolver for Eclipse</title>
+<meta name="description" content="AfterGit is a three-pane git conflict resolver for the Eclipse IDE and EGit: ours, the result and theirs side by side, with automatic resolution you review.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
@@ -14,7 +14,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html">
-      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1" y="4" width="8" height="24" rx="2" fill="#2f8a4c"/><rect x="12" y="4" width="8" height="24" rx="2" fill="#0f766e"/><rect x="23" y="4" width="8" height="24" rx="2" fill="#b4561e"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M8 10C10.5 10 10.5 4 13 4V28C10.5 28 10.5 22 8 22ZM24 10C21.5 10 21.5 4 19 4V28C21.5 28 21.5 22 24 22Z" fill="#ffdf99"/><rect x="1" y="10" width="7" height="12" fill="#e0a800"/><rect x="24" y="10" width="7" height="12" fill="#e0a800"/><rect x="13" y="4" width="6" height="24" fill="currentColor"/></svg>
       AfterGit
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -30,99 +30,186 @@
 
 <main id="main">
   <div class="wrap">
-    <section class="hero" aria-labelledby="title">
-      <span class="badge">Version 0.0.1 &middot; first public release</span>
-      <h1 id="title">Resolve git conflicts in Eclipse, three panes at a time</h1>
-      <p class="lead">AfterGit is a three-pane merge resolver for the Eclipse IDE that plugs into EGit. A double-click
-        on a conflicting file in Git Staging opens ours, the result and theirs side by side, resolves what can be
-        resolved safely on its own, and leaves every automatic decision visible until you review it.</p>
-      <div class="actions">
-        <a class="button primary" href="install.html">Install AfterGit</a>
-        <a class="button secondary" href="usage.html">Quick start</a>
-        <a class="button secondary" href="https://github.com/slavus/aftergit">Source on GitHub</a>
-      </div>
-      <figure class="shot">
-        <picture>
-          <source srcset="images/resolver-dark.png" media="(prefers-color-scheme: dark)" width="1177" height="597">
-          <img src="images/resolver-light.png" width="1528" height="941"
-             alt="The AfterGit resolver in Eclipse: ours on the left, the result in the middle and theirs on the right, joined by connectors, with changed words highlighted and the toolbar above.">
-        </picture>
-        <figcaption>Ours | Result | Theirs with connectors, changed words in a stronger shade and the toolbar with
-          Save &amp; Mark Resolved.</figcaption>
-      </figure>
-    </section>
+    <div class="merge">
+      <div class="pane-title t-ours" aria-hidden="true">main (ours)</div>
+      <p class="side ours" aria-hidden="true">A git conflict
+resolver for EGit.</p>
+      <svg class="ribbon left" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path class="band" d="M0 30C50 30 50 0 100 0V100C50 100 50 70 0 70Z"/>
+        <path class="edge" d="M0 30C50 30 50 0 100 0M0 70C50 70 50 100 100 100" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="pane-title t-result" aria-hidden="true">Result</div>
+      <h1 class="merged"><span class="ruler" aria-hidden="true">&#9670;</span><span class="line-text">A three-pane git
+conflict resolver
+for Eclipse and EGit.</span></h1>
+      <svg class="ribbon right" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path class="band" d="M100 30C50 30 50 0 0 0V100C50 100 50 70 100 70Z"/>
+        <path class="edge" d="M100 30C50 30 50 0 0 0M100 70C50 70 50 100 0 100" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="pane-title t-theirs" aria-hidden="true">feature (theirs)</div>
+      <p class="side theirs" aria-hidden="true">A three-pane <mark>merge</mark>
+<mark>tool</mark> for Eclipse.</p>
+    </div>
 
-    <section aria-labelledby="features">
-      <h2 id="features">Features</h2>
-      <ul class="features">
+    <div class="intro">
+      <p>When a merge, rebase or cherry-pick stops with conflicts, double-click the file in Git Staging. AfterGit
+        opens ours, the result and theirs side by side instead of EGit&rsquo;s merge editor, resolves what it can
+        resolve safely on its own, and keeps every automatic decision marked until you have looked at it.</p>
+      <p>To install it, add <code class="url-inline">https://slavus.github.io/<wbr>aftergit/<wbr>updates/</code> under
+        Help &rarr; Install New Software in Eclipse 2026-03 or later. The <a href="install.html">installation
+        steps</a> explain which features to pick, the <a href="usage.html">quick start</a> walks through a first
+        merge, and the source is <a href="https://github.com/slavus/aftergit">on GitHub</a>.</p>
+    </div>
+
+    <figure class="shot">
+      <picture>
+        <source srcset="images/resolver-dark.png" media="(prefers-color-scheme: dark)" width="1177" height="597">
+        <img src="images/resolver-light.png" width="1528" height="941"
+           alt="The AfterGit resolver in Eclipse: ours on the left, the result in the middle and theirs on the right, joined by connectors, with changed words highlighted and the toolbar above.">
+      </picture>
+      <figcaption>A Java file after a merge. One conflict is still open (red), one block AfterGit resolved on its own
+        is waiting for review (teal, hatched), and one-sided changes are already in the result.</figcaption>
+    </figure>
+
+    <section aria-labelledby="blocks">
+      <h2 id="blocks">How blocks are marked</h2>
+      <p class="text">Every change is a block with a full-line background in each pane where it has lines, and the
+        changed words in a stronger shade. The colours below are the defaults of the light theme; the dark theme,
+        a colour-blind safe and a high-contrast scheme have their own.</p>
+      <ul class="legend">
         <li>
-          <h3>Three panes with connectors</h3>
-          <p>Ours | Result | Theirs (or Left + Result, Result + Right, Result Below), full-line change colours with
-            the changed words in a stronger shade, an overview stripe and one shared scroll bar. &raquo; / &laquo;
-            take a side, &times; ignores; Take Both, Revert Block and undo/redo that includes block states.</p>
+          <div class="blk conflict" aria-hidden="true">int precision = <mark>3</mark>;</div>
+          <p><b>Open conflict.</b> Both sides changed these lines. Take a side, take both, ignore it or type the
+            result yourself.</p>
         </li>
         <li>
-          <h3>Auto-resolution you can review</h3>
-          <p>Non-conflicting changes, word-level merges and an optional greedy pass run when a file opens.
-            Auto-resolved blocks are teal with an &ldquo;A&rdquo; and stay hatched until you mark them reviewed;
-            Revert and Re-run take them back.</p>
+          <div class="blk added" aria-hidden="true"><mark>import java.util.Objects;</mark></div>
+          <p><b>Added by one side.</b> Only ours or only theirs has these lines.</p>
         </li>
         <li>
-          <h3>Structure-aware resolvers</h3>
-          <p>Java imports and class members, <code>.properties</code> files per key, <code>MANIFEST.MF</code> per
-            header and clause, and an optional &ldquo;Newer version wins&rdquo; for build descriptors such as
-            <code>pom.xml</code>. Other plug-ins can add resolvers through an extension point.</p>
+          <div class="blk modified" aria-hidden="true">return <mark>values.stream()</mark>&hellip;</div>
+          <p><b>Modified by one side.</b> Only one side changed these lines.</p>
         </li>
         <li>
-          <h3>Java support</h3>
-          <p>With JDT the result is a real Java editor with live errors, quick fix and content assist. Imports are
-            fixed after a take, and an auto-resolved block that adds a compile error gets a red frame.</p>
+          <div class="blk removed" aria-hidden="true"><mark>int s = 0;</mark></div>
+          <p><b>Removed by one side.</b> One side deleted these lines.</p>
         </li>
         <li>
-          <h3>Resolve All Simple Conflicts</h3>
-          <p>For files, folders, projects or a whole repository, in the background, with a summary, &ldquo;Stage
-            Resolved Files&rdquo; and &ldquo;Undo Resolve All&rdquo;.</p>
+          <div class="blk taken" aria-hidden="true"><span class="glyph">&#9664;</span>int precision = 3;</div>
+          <p><b>Resolved conflict.</b> The side you took and the result are yellow; the result&rsquo;s ruler shows
+            &#9664; for ours, &#9654; for theirs or &#9670; for both.</p>
         </li>
         <li>
-          <h3>Every kind of conflict</h3>
-          <p>Text conflicts in the resolver; binary and modify/delete conflicts with Keep Ours, Keep Theirs or Delete
-            File. Saving with open conflicts writes markers in the repository&rsquo;s
-            <code>merge.conflictStyle</code>.</p>
+          <div class="blk dropped" aria-hidden="true">int precision = 4;</div>
+          <p><b>Side not taken.</b> Its text is not in the result: grey, struck through, outlined with dashes.</p>
         </li>
         <li>
-          <h3>Structure compare</h3>
-          <p>A Structure column (and the Outline view) lists the members ours or theirs changed, who changed them and
-            the state of their blocks, for Java, <code>.properties</code> and <code>MANIFEST.MF</code>.</p>
+          <div class="blk edited" aria-hidden="true"><span class="glyph">&#9998;</span>int precision = 2;</div>
+          <p><b>Typed by hand.</b> You wrote the result yourself, so both sides turn grey and the ruler shows
+            &#9998;.</p>
         </li>
         <li>
-          <h3>Other languages</h3>
-          <p>With tm4e and lsp4e: TextMate syntax colours in all three panes and the errors of the file&rsquo;s
-            language server (Wild Web Developer, LemMinX and others) in the result.</p>
+          <div class="blk auto" aria-hidden="true"><span class="badge-a">A</span>if (b == 0) {</div>
+          <p><b>Resolved by AfterGit, not reviewed.</b> Teal and hatched with a filled &ldquo;A&rdquo; until you
+            choose Mark Reviewed (&#10003;).</p>
         </li>
         <li>
-          <h3>Fits into EGit</h3>
-          <p>Optionally the Merge Tool of Git Staging, &ldquo;Resolve in AfterGit&hellip;&rdquo; in the explorers and
-            the Team menu, Save &amp; Mark Resolved (save, <code>git add</code>, close) and markers on files that
-            still need attention.</p>
+          <div class="blk reviewed" aria-hidden="true"><span class="badge-a outlined">A</span>if (b == 0) {</div>
+          <p><b>Resolved by AfterGit, reviewed.</b> Plain teal with an outlined &ldquo;A&rdquo;. Revert and
+            Re-run still take it back.</p>
         </li>
         <li>
-          <h3>Preferences and themes</h3>
-          <p>Workspace and project settings (shareable through <code>.settings</code>), colour schemes for light and
-            dark themes including a colour-blind safe and a high-contrast one, and key bindings for every command.</p>
-        </li>
-        <li>
-          <h3>Optional AI, off by default</h3>
-          <p><em>Resolve with AI</em> asks a language model (the Anthropic Messages API or an OpenAI-compatible
-            server such as OpenAI, Ollama or LM Studio) to resolve a conflict. <em>AI agents (MCP)</em> runs a local
-            Model Context Protocol server for agents you run yourself. Nothing is sent until you allow it, and every
-            answer is a proposal you review.</p>
+          <div class="blk ai" aria-hidden="true">int precision = 3;</div>
+          <p><b>Proposed by AI.</b> Purple and framed. Only with the optional AI features, and only after you allow
+            them.</p>
         </li>
       </ul>
     </section>
 
+    <section class="features" aria-labelledby="features">
+      <h2 id="features">What it does</h2>
+
+      <h3>Resolving</h3>
+      <dl>
+        <dt>Three panes</dt>
+        <dd>Ours | Result | Theirs, or Left + Result, Result + Right and Result Below, with connectors between the
+          panes, an overview stripe and one shared scroll bar.</dd>
+        <dt>Taking sides</dt>
+        <dd>&raquo; and &laquo; in the connectors take a side, &times; ignores it. Take Both, Revert Block, and
+          undo and redo that include the state of every block.</dd>
+        <dt>Every kind of conflict</dt>
+        <dd>Text conflicts open in the resolver. Binary and modify/delete conflicts offer Keep Ours, Keep Theirs or
+          Delete File. Saving with open conflicts writes markers in the repository&rsquo;s
+          <code>merge.conflictStyle</code>.</dd>
+        <dt>Java</dt>
+        <dd>With JDT the result is a real Java editor with live errors, quick fix and content assist. Imports are
+          fixed after a take, and an auto-resolved block that adds a compile error gets a red frame.</dd>
+        <dt>Structure column</dt>
+        <dd>Lists the members ours or theirs changed, who changed them and the state of their blocks, for Java,
+          <code>.properties</code> and <code>MANIFEST.MF</code>. The Outline view shows the same.</dd>
+        <dt>Other languages</dt>
+        <dd>With tm4e and lsp4e: TextMate syntax colours in all three panes, and the errors of the file&rsquo;s
+          language server (Wild Web Developer, LemMinX and others) in the result.</dd>
+      </dl>
+
+      <h3>Automatic resolution</h3>
+      <dl>
+        <dt>When a file opens</dt>
+        <dd>Non-conflicting changes, word-level merges and an optional greedy pass are applied. Each automatic
+          decision stays marked until you review it; Revert and Re-run take it back.</dd>
+        <dt>Structure-aware resolvers</dt>
+        <dd>Java imports and class members, <code>.properties</code> files per key, <code>MANIFEST.MF</code> per
+          header and clause, and an optional &ldquo;Newer version wins&rdquo; for build descriptors such as
+          <code>pom.xml</code>. Other plug-ins can add resolvers through an extension point.</dd>
+        <dt>Resolve All Simple Conflicts</dt>
+        <dd>For files, folders, projects or a whole repository, in the background. It ends with a summary,
+          Stage Resolved Files and Undo Resolve All.</dd>
+      </dl>
+
+      <h3>Eclipse integration</h3>
+      <dl>
+        <dt>EGit</dt>
+        <dd>Optionally the Merge Tool of Git Staging; &ldquo;Resolve in AfterGit&hellip;&rdquo; in the explorers and
+          the Team menu; Save &amp; Mark Resolved saves, runs <code>git add</code> and closes; markers on files that
+          still need attention.</dd>
+        <dt>Settings</dt>
+        <dd>Workspace and project settings, shareable through <code>.settings</code>. Key bindings for every
+          command.</dd>
+        <dt>Themes</dt>
+        <dd>Colours for the light and dark themes, plus a colour-blind safe and a high-contrast scheme.</dd>
+      </dl>
+
+      <h3>Optional AI</h3>
+      <dl>
+        <dt>Resolve with AI</dt>
+        <dd>Asks a language model to resolve a conflict: the Anthropic Messages API or an OpenAI-compatible server
+          such as OpenAI, Ollama or LM Studio.</dd>
+        <dt>AI agents (MCP)</dt>
+        <dd>A local Model Context Protocol server for agents you run yourself.</dd>
+        <dt>Off by default</dt>
+        <dd>Both are separate features. Nothing is sent until you allow it, and every answer is a proposal you
+          review.</dd>
+      </dl>
+    </section>
+
+    <section class="text" aria-labelledby="requirements">
+      <h2 id="requirements">Requirements</h2>
+      <ul>
+        <li>Eclipse IDE 2026-03 (4.39) or later, running on Java 21 or later.</li>
+        <li>EGit and JGit 7.6 or later; the Eclipse IDE packages include them.</li>
+        <li>For the Java support: the Java development tools (JDT).</li>
+        <li>For other languages: tm4e 0.17.2 or later and lsp4e 0.19.8 or later.</li>
+        <li>Tested on Linux (GTK). The bundles are plain Java and SWT, but Windows and macOS are not tested yet.</li>
+      </ul>
+      <p>0.0.1 is the first public release. I use it on real merges, but it is young: review the result before you
+        commit. Known limitations are in the
+        <a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">changelog</a>; please report problems
+        in the <a href="https://github.com/slavus/aftergit/issues">issue tracker</a>.</p>
+    </section>
+
     <section aria-labelledby="screens">
-      <h2 id="screens">Screenshots</h2>
-      <div class="gallery">
+      <h2 id="screens">More screenshots</h2>
+      <div class="pair">
         <figure>
           <img src="images/resolver-dark.png" width="1177" height="597" loading="lazy"
                alt="The resolver in Eclipse's dark theme, with the same three panes, connectors and change colours adapted to the dark background.">
@@ -133,25 +220,6 @@
                alt="The Structure column to the left of the panes, listing the changed members with who changed them and a chip for the state of their blocks.">
           <figcaption>The Structure column lists the changed members and the state of their blocks.</figcaption>
         </figure>
-      </div>
-    </section>
-
-    <section aria-labelledby="requirements">
-      <h2 id="requirements">Requirements</h2>
-      <ul class="req">
-        <li>Eclipse IDE 2026-03 (4.39) or later.</li>
-        <li>Java 21 or later to run Eclipse.</li>
-        <li>EGit and JGit 7.6 or later (part of the Eclipse IDE packages).</li>
-        <li>Optional: the Java development tools (JDT) for the Java support.</li>
-        <li>Optional: TextMate support (tm4e 0.17.2 or later) and the Language Server Protocol client (lsp4e 0.19.8
-          or later) for other languages.</li>
-        <li>Tested on Linux (GTK). The bundles are plain Java and SWT, but Windows and macOS are not tested yet.</li>
-      </ul>
-      <div class="note">
-        <p><strong>Early release.</strong> 0.0.1 is used on real merges but is young: review the result before you
-          commit. Known limitations are listed in the
-          <a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">changelog</a>; please report problems
-          in the <a href="https://github.com/slavus/aftergit/issues">issue tracker</a>.</p>
       </div>
     </section>
   </div>

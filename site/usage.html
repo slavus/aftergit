@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quick start &middot; AfterGit Merge Resolver</title>
+<title>AfterGit quick start</title>
 <meta name="description" content="Resolve your first git conflict with AfterGit in Eclipse: open the resolver, take sides, Resolve All Simple Conflicts, Save &amp; Mark Resolved and the key bindings.">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -14,7 +14,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html">
-      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1" y="4" width="8" height="24" rx="2" fill="#2f8a4c"/><rect x="12" y="4" width="8" height="24" rx="2" fill="#0f766e"/><rect x="23" y="4" width="8" height="24" rx="2" fill="#b4561e"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M8 10C10.5 10 10.5 4 13 4V28C10.5 28 10.5 22 8 22ZM24 10C21.5 10 21.5 4 19 4V28C21.5 28 21.5 22 24 22Z" fill="#ffdf99"/><rect x="1" y="10" width="7" height="12" fill="#e0a800"/><rect x="24" y="10" width="7" height="12" fill="#e0a800"/><rect x="13" y="4" width="6" height="24" fill="currentColor"/></svg>
       AfterGit
     </a>
     <nav class="site-nav" aria-label="Main">
@@ -30,65 +30,66 @@
 
 <main id="main">
   <div class="wrap">
-    <h1 class="page-title">Quick start</h1>
-    <p class="page-intro">The first steps with AfterGit after a merge, rebase or cherry-pick that stopped with
-      conflicts. The full <a href="https://github.com/slavus/aftergit/blob/main/docs/INSTALL.md">user guide</a>
-      describes every command and preference.</p>
+    <div class="page-head">
+      <h1>Quick start</h1>
+      <p>A merge, rebase or cherry-pick stopped with conflicts. This is how you get through it with AfterGit. The
+        full <a href="https://github.com/slavus/aftergit/blob/main/docs/INSTALL.md">user guide</a> describes every
+        command and preference.</p>
+    </div>
 
-    <section aria-labelledby="open">
-      <h2 id="open">1. Open a conflicting file</h2>
-      <ul>
-        <li><strong>Double-click</strong> a conflicting file in Git Staging (or press <kbd>Enter</kbd>, or choose its
-          &ldquo;Merge Tool&rdquo; entry). With &ldquo;Use AfterGit as the Merge Tool&rdquo; (Preferences &rarr;
-          AfterGit, on by default) this opens AfterGit instead of EGit&rsquo;s merge editor for a text conflict.</li>
-        <li>Or right-click a conflicted file &rarr; <strong>Resolve in AfterGit&hellip;</strong> in Package Explorer,
-          Project Explorer or the Team menu (right below EGit&rsquo;s Merge Tool), or use the view menu or the
-          toolbar of Git Staging.</li>
-        <li>Binary and modify/delete conflicts offer Keep Ours, Keep Theirs or Delete File; submodules, symbolic links
-          and renames go to EGit&rsquo;s Merge Tool.</li>
-      </ul>
+    <section class="text" aria-labelledby="open">
+      <h2 id="open" class="step-head"><span class="n">1</span> Open a conflicting file</h2>
+      <p><strong>Double-click</strong> the file in Git Staging (or press <kbd>Enter</kbd>, or choose its Merge Tool
+        entry). With &ldquo;Use AfterGit as the Merge Tool&rdquo; (Preferences &rarr; AfterGit, on by default) a text
+        conflict opens in AfterGit instead of EGit&rsquo;s merge editor.</p>
+      <p>You can also right-click a conflicted file and choose <strong>Resolve in AfterGit&hellip;</strong> in Package
+        Explorer, Project Explorer or the Team menu (right below EGit&rsquo;s Merge Tool), or use the view menu or the
+        toolbar of Git Staging.</p>
+      <p>Binary and modify/delete conflicts offer Keep Ours, Keep Theirs or Delete File. Submodules, symbolic links and
+        renames go to EGit&rsquo;s Merge Tool.</p>
     </section>
 
     <section aria-labelledby="resolve">
-      <h2 id="resolve">2. Resolve the conflicts</h2>
+      <h2 id="resolve" class="step-head"><span class="n">2</span> Resolve the conflicts</h2>
       <figure class="shot">
         <img src="images/resolver-light.png" width="1528" height="941" loading="lazy"
              alt="The resolver with ours, the result and theirs; the connectors between the panes carry the take and ignore buttons.">
       </figure>
-      <ul>
-        <li>When the file opens, AfterGit resolves what it can on its own: non-conflicting changes, word-level merges
+      <div class="text">
+        <p>When the file opens, AfterGit resolves what it can on its own: non-conflicting changes, word-level merges
           and, where the file has a structure, Java imports and members, <code>.properties</code> keys and
           <code>MANIFEST.MF</code> headers. These blocks are <strong>teal with an &ldquo;A&rdquo;</strong> and stay
-          hatched until you mark them reviewed (&#10003;); Revert and Re-run take them back.</li>
-        <li>Open conflicts are <strong>red</strong>. In the connectors, <strong>&raquo;</strong> and
+          hatched until you mark them reviewed (&#10003;). Revert and Re-run take them back.</p>
+        <p>Open conflicts are <strong>red</strong>. In the connectors, <strong>&raquo;</strong> and
           <strong>&laquo;</strong> take a side (<kbd>Ctrl</kbd>+click replaces instead of appending) and
           <strong>&times;</strong> ignores it. The toolbar adds Take Both, and &ldquo;&#8943;&rdquo; holds Revert
-          Block and Compare with Base.</li>
-        <li>You can also type in the result: it is a real editor, and for Java files with JDT a Java editor with live
-          errors, quick fix and content assist.</li>
-        <li>Move between conflicts with &#9664; Conflict &#9654; and &#9664; Unresolved &#9654; in the toolbar. Undo and
-          redo include the state of every block.</li>
-      </ul>
+          Block and Compare with Base.</p>
+        <p>You can also type in the result. It is a real editor, and for Java files with JDT a Java editor with live
+          errors, quick fix and content assist.</p>
+        <p>Move between conflicts with &#9664; Conflict &#9654; and &#9664; Unresolved &#9654; in the toolbar. Undo and
+          redo include the state of every block. The <a href="index.html#blocks">block colours</a> are explained on
+          the overview.</p>
+      </div>
     </section>
 
-    <section aria-labelledby="save">
-      <h2 id="save">3. Save &amp; Mark Resolved</h2>
+    <section class="text" aria-labelledby="save">
+      <h2 id="save" class="step-head"><span class="n">3</span> Save &amp; Mark Resolved</h2>
       <p><strong>Save &amp; Mark Resolved</strong>, at the right edge of the toolbar, saves the file, stages it
         (<code>git add</code>) and closes the resolver once every conflict is resolved; the status line names any
         auto-resolved blocks you have not reviewed. With conflicts left it asks: Cancel, Save without staging, or Save
         with markers (writes the open conflicts as markers in the repository&rsquo;s
         <code>merge.conflictStyle</code>). <kbd>Ctrl</kbd>+<kbd>S</kbd> only saves.</p>
-      <p>The file moves to &ldquo;Staged Changes&rdquo; in Git Staging at once. When every file is staged, commit or
-        continue the rebase as usual.</p>
+      <p>The file moves to Staged Changes in Git Staging at once. When every file is staged, commit or continue the
+        rebase as usual.</p>
     </section>
 
-    <section aria-labelledby="resolve-all">
-      <h2 id="resolve-all">Many files: Resolve All Simple Conflicts</h2>
+    <section class="text" aria-labelledby="resolve-all">
+      <h2 id="resolve-all">Many files at once</h2>
       <p>Select files, folders or projects (or entries in Git Staging) and choose <strong>Resolve All Simple
         Conflicts</strong>, or use Team (or the Git Staging view menu) &rarr; <strong>Resolve All Simple Conflicts in
         Repository</strong>. It runs in the background, resolves every conflict that can be resolved automatically,
         writes the rest as conflict markers, and ends with a summary of the files fully resolved, partly resolved and
-        left untouched.</p>
+        left untouched. From the summary:</p>
       <ul>
         <li><strong>Stage Resolved Files</strong> runs <code>git add</code> on the fully resolved files only.</li>
         <li><strong>Open Remaining in Editor</strong> opens the resolver for every other conflicted file.</li>
@@ -98,9 +99,9 @@
 
     <section aria-labelledby="keys">
       <h2 id="keys">Key bindings</h2>
-      <p>In the context &ldquo;Resolving Merge Conflicts&rdquo;; change them under Preferences &rarr; General &rarr;
-        Keys, where every resolver command of the category &ldquo;AfterGit&rdquo; can get a key. On macOS
-        <kbd>Ctrl</kbd> is <kbd>Cmd</kbd>.</p>
+      <p class="text">These work in the context &ldquo;Resolving Merge Conflicts&rdquo;. Change them under Preferences
+        &rarr; General &rarr; Keys, where every resolver command of the category &ldquo;AfterGit&rdquo; can get a key.
+        On macOS <kbd>Ctrl</kbd> is <kbd>Cmd</kbd>.</p>
       <div class="table-wrap">
         <table>
           <caption class="visually-hidden">Default key bindings of the resolver</caption>
@@ -108,22 +109,22 @@
             <tr><th scope="col">Keys</th><th scope="col">Action</th></tr>
           </thead>
           <tbody>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>,</kbd></td><td>Next / previous change</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>,</kbd></td><td>Next / previous conflict (any state)</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd></td><td>Next / previous unresolved conflict</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>&larr;</kbd> / <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>&rarr;</kbd></td><td>Take left / take right</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd></td><td>Take both (left first)</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td><td>Ignore</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd> &hellip; <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>4</kbd></td><td>Layouts: Ours | Result | Theirs, Left + Result, Result + Right, Result Below</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd></td><td>Show / hide the Structure column</td></tr>
-            <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>Undo / redo, block states included</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>,</kbd></td><td>Next / previous change</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>,</kbd></td><td>Next / previous conflict (any state)</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd></td><td>Next / previous unresolved conflict</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>&larr;</kbd> / <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>&rarr;</kbd></td><td>Take left / take right</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd></td><td>Take both (left first)</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd></td><td>Ignore</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd> &hellip; <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>4</kbd></td><td>Layouts: Ours | Result | Theirs, Left + Result, Result + Right, Result Below</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd></td><td>Show / hide the Structure column</td></tr>
+            <tr><td class="keys"><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>Undo / redo, block states included</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section aria-labelledby="more">
-      <h2 id="more">More</h2>
+    <section class="text" aria-labelledby="more">
+      <h2 id="more">Settings</h2>
       <ul>
         <li>Colours and the colour schemes (Default, Colour-blind safe, High contrast) are under Preferences &rarr;
           AfterGit &rarr; Appearance, with light and dark values of their own.</li>
