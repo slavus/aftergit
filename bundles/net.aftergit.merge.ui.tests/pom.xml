@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.aftergit</groupId>
+    <artifactId>aftergit-parent</artifactId>
+    <version>0.0.1</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>net.aftergit.merge.ui.tests</artifactId>
+  <packaging>eclipse-test-plugin</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-surefire-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <!-- languages design, Testing: AfterGit uses only the stand-in language server, so the servers of Wild Web
+               Developer never start in the tests -->
+          <argLine>-Daftergit.repo.root=${maven.multiModuleProjectDirectory} -Daftergit.screenshots=${project.build.directory}/screenshots -Daftergit.lsp.servers=net.aftergit.merge.ui.tests.</argLine>
+          <useUIHarness>true</useUIHarness>
+          <useUIThread>true</useUIThread>
+          <product>org.eclipse.sdk.ide</product>
+          <application>org.eclipse.ui.ide.workbench</application>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <dependency-resolution>
+            <extraRequirements>
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.swt.gtk.linux.x86_64</id><versionRange>0.0.0</versionRange></requirement>
+              <requirement><type>eclipse-feature</type><id>org.eclipse.e4.rcp</id><versionRange>0.0.0</versionRange></requirement>
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.ui.ide.application</id><versionRange>0.0.0</versionRange></requirement>
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.ui.themes</id><versionRange>0.0.0</versionRange></requirement>
+              <!-- EGit's Merge Tool command and Git Staging, which AfterGit takes over -->
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.egit.ui</id><versionRange>0.0.0</versionRange></requirement>
+              <!-- languages design, Testing: the web languages and XML of the target Eclipse take part in the
+                   choice of grammars, as in the user's Eclipse; no test opens their editors, so no server starts -->
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.wildwebdeveloper</id><versionRange>0.0.0</versionRange></requirement>
+              <requirement><type>eclipse-plugin</type><id>org.eclipse.wildwebdeveloper.xml</id><versionRange>0.0.0</versionRange></requirement>
+            </extraRequirements>
+          </dependency-resolution>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

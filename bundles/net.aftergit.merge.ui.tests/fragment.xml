@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+  <!-- the stand-in of the UI tests (resolve-with-ai design §6); not ready unless a test makes it ready -->
+  <extension point="net.aftergit.merge.aiResolver">
+    <resolver id="net.aftergit.merge.ui.tests.standin" name="Stand-in" class="net.aftergit.merge.ui.StandInAiResolver"/>
+  </extension>
+  <!-- the stand-in language server (languages design, Testing): a content type of the tests only -->
+  <extension point="org.eclipse.core.contenttype.contentTypes">
+    <content-type id="net.aftergit.merge.ui.tests.agdiag" name="AfterGit test language"
+        base-type="org.eclipse.core.runtime.text" file-extensions="agdiag" priority="normal"/>
+    <!-- three servers for one file: the stand-in and two that never answer AfterGit's virtual documents -->
+    <content-type id="net.aftergit.merge.ui.tests.agpair" name="AfterGit test language with two servers"
+        base-type="org.eclipse.core.runtime.text" file-extensions="agpair" priority="normal"/>
+  </extension>
+  <extension point="org.eclipse.lsp4e.languageServer">
+    <server id="net.aftergit.merge.ui.tests.standin.server" label="AfterGit stand-in language server"
+        class="net.aftergit.merge.ui.StandInServerConnection"
+        clientImpl="net.aftergit.merge.ui.StandInLanguageClient"
+        markerAttributeComputer="net.aftergit.merge.ui.StandInMarkerMessages"
+        singleton="false" lastDocumentDisconnectedTimeout="1"/>
+    <contentTypeMapping id="net.aftergit.merge.ui.tests.standin.server"
+        contentType="net.aftergit.merge.ui.tests.agdiag" languageId="agdiag"/>
+    <server id="net.aftergit.merge.ui.tests.standin.mute" label="AfterGit stand-in server for files on disk only"
+        class="net.aftergit.merge.ui.StandInMuteServerConnection"
+        singleton="false" lastDocumentDisconnectedTimeout="1"/>
+    <contentTypeMapping id="net.aftergit.merge.ui.tests.standin.server"
+        contentType="net.aftergit.merge.ui.tests.agpair" languageId="agpair"/>
+    <contentTypeMapping id="net.aftergit.merge.ui.tests.standin.mute"
+        contentType="net.aftergit.merge.ui.tests.agpair" languageId="agpair"/>
+    <server id="net.aftergit.merge.ui.tests.standin.mute2" label="AfterGit second stand-in server for files on disk only"
+        class="net.aftergit.merge.ui.StandInMuteServerConnection"
+        singleton="false" lastDocumentDisconnectedTimeout="1"/>
+    <contentTypeMapping id="net.aftergit.merge.ui.tests.standin.mute2"
+        contentType="net.aftergit.merge.ui.tests.agpair" languageId="agpair"/>
+  </extension>
+  <!-- a TextMate grammar for the same files: TextMate colours and a language server on one shared document -->
+  <extension point="org.eclipse.tm4e.registry.grammars">
+    <grammar scopeName="source.agdiag" path="grammars/agdiag.tmLanguage.json"/>
+    <scopeNameContentTypeBinding scopeName="source.agdiag" contentTypeId="net.aftergit.merge.ui.tests.agdiag"/>
+  </extension>
+</fragment>

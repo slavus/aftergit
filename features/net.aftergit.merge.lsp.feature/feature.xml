@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="net.aftergit.merge.lsp.feature" label="AfterGit Merge Resolver: Languages" version="0.0.1"
+         provider-name="AfterGit">
+  <description url="https://github.com/slavus/aftergit">Syntax colours (TextMate grammars of Eclipse) and the errors of the language servers of Eclipse (lsp4e) for other languages in the AfterGit merge resolver. Needs the Eclipse TextMate support (tm4e) and the Language Server Protocol client (lsp4e).</description>
+  <copyright url="https://github.com/slavus/aftergit">Copyright (c) 2026 Hrvoje Slavicek and the AfterGit contributors.</copyright>
+  <license url="https://www.eclipse.org/legal/epl-2.0/">AfterGit is made available under the terms of the Eclipse Public License 2.0 (SPDX-License-Identifier: EPL-2.0), https://www.eclipse.org/legal/epl-2.0/. See the files LICENSE and NOTICE at https://github.com/slavus/aftergit.</license>
+  <requires>
+    <import plugin="org.eclipse.tm4e.core"/>
+    <import plugin="org.eclipse.tm4e.registry"/>
+    <import plugin="org.eclipse.tm4e.ui"/>
+    <import plugin="org.eclipse.lsp4e"/>
+    <import plugin="org.eclipse.lsp4j"/>
+    <import plugin="org.eclipse.lsp4j.jsonrpc"/>
+  </requires>
+  <plugin id="net.aftergit.merge.lsp" version="0.0.0" unpack="false"/>
+</feature>

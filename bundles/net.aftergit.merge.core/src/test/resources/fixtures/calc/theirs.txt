@@ -1,0 +1,43 @@
+package demo;
+
+import java.util.List;
+
+/**
+ * Simple calculator.
+ * Supports basic arithmetic.
+ */
+public class Calc {
+
+    private int precision = 4;
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public double divide(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("div by zero");
+        }
+        return (double) a / b;
+    }
+
+    public int sum(List<Integer> values) {
+        int s = 0;
+        for (int v : values) {
+            s += v;
+        }
+        return s;
+    }
+
+    public String describe() {
+        return "Calculator(precision=" + precision + ")";
+    }
+}

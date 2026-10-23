@@ -1,0 +1,51 @@
+name: Website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'docs/images/**'
+      - 'releng/publish-site.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# the release and the website workflow both push to gh-pages: one at a time, never cancelled half-way
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  site:
+    name: Refresh the website on gh-pages
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4.2.2
+      # only the website files change; updates/ (the p2 update site) stays as the releases wrote it
+      - name: Check out gh-pages
+        run: |
+          pages="$RUNNER_TEMP/gh-pages"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch --no-tags --no-prune --depth=1 origin gh-pages
+            git worktree add -B gh-pages "$pages" FETCH_HEAD
+          else
+            git worktree add --orphan -b gh-pages "$pages"
+          fi
+          echo "PAGES=$pages" >> "$GITHUB_ENV"
+      - name: Copy the website
+        run: releng/publish-site.sh "$PAGES"
+      - name: Push gh-pages
+        run: |
+          cd "$PAGES"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The website on gh-pages is up to date"
+          else
+            git commit -m "site: website from ${GITHUB_SHA::7}"
+            git push origin gh-pages
+          fi

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="net.aftergit.merge.aiResolver">
+    <resolver id="net.aftergit.merge.ai.model" name="%resolver.model.name" class="net.aftergit.merge.ai.ModelResolver"/>
+  </extension>
+  <extension point="org.eclipse.ui.preferencePages">
+    <page id="net.aftergit.merge.ai.page" name="%page.ai" category="net.aftergit.merge.preferences"
+        class="net.aftergit.merge.ai.ui.ResolveWithAiPreferencePage"/>
+  </extension>
+</plugin>

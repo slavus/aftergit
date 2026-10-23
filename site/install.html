@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install AfterGit &middot; AfterGit Merge Resolver</title>
+<meta name="description" content="Install the AfterGit merge resolver into Eclipse from its update site or from the release zip, and update or uninstall it.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1" y="4" width="8" height="24" rx="2" fill="#2f8a4c"/><rect x="12" y="4" width="8" height="24" rx="2" fill="#0f766e"/><rect x="23" y="4" width="8" height="24" rx="2" fill="#b4561e"/></svg>
+      AfterGit
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="install.html" aria-current="page">Install</a></li>
+        <li><a href="usage.html">Quick start</a></li>
+        <li><a href="https://github.com/slavus/aftergit">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1 class="page-title">Install AfterGit</h1>
+    <p class="page-intro">AfterGit installs into an existing Eclipse IDE from its update site. You need Eclipse IDE
+      2026-03 (4.39) or later running on Java 21 or later, with EGit and JGit 7.6 or later; the Eclipse IDE packages
+      include EGit.</p>
+
+    <section aria-labelledby="update-site">
+      <h2 id="update-site">From the update site</h2>
+      <p>The update site always offers every release, with the latest one selected by default:</p>
+      <code class="url">https://slavus.github.io/aftergit/updates/</code>
+      <ol class="steps">
+        <li>In Eclipse choose <strong>Help &rarr; Install New Software&hellip;</strong></li>
+        <li>Press <strong>Add&hellip;</strong>, enter the name <code>AfterGit</code> and the location above, and
+          press <strong>Add</strong>.</li>
+        <li>Select the features you want under the category <strong>AfterGit</strong> (see the table below).
+          Keep <strong>Contact all update sites during install to find required software</strong> ticked, so that
+          Eclipse can fetch EGit or JGit from its own release repository if they are missing.</li>
+        <li>Press <strong>Next</strong>, review the items, accept the Eclipse Public License 2.0 and press
+          <strong>Finish</strong>.</li>
+        <li>The AfterGit bundles are not signed, so Eclipse asks whether to trust them: select the unsigned AfterGit
+          content, press <strong>Trust Selected</strong>, and restart Eclipse when asked.</li>
+      </ol>
+      <p>Each release also has a site of its own, for example
+        <code>https://slavus.github.io/aftergit/updates/0.0.1/</code>, if you want to stay on one version.</p>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 id="features">Which features to pick</h2>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Features on the AfterGit update site</caption>
+          <thead>
+            <tr><th scope="col">Feature</th><th scope="col">What it brings</th><th scope="col">Select it?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">AfterGit Merge Resolver</th>
+              <td>The three-pane resolver, auto-resolution, the <code>.properties</code> and <code>MANIFEST.MF</code>
+                resolvers, Resolve All Simple Conflicts and the EGit integration.</td>
+              <td>Yes, always.</td>
+            </tr>
+            <tr>
+              <th scope="row">AfterGit Merge Resolver: Java Support</th>
+              <td>The result as a Java editor, the Java imports and members resolvers, the compile check. Needs the
+                Java development tools (JDT).</td>
+              <td>Comes with the main feature when JDT is installed.</td>
+            </tr>
+            <tr>
+              <th scope="row">AfterGit Merge Resolver: Languages</th>
+              <td>TextMate syntax colours and the language server&rsquo;s errors for other languages. Needs tm4e
+                0.17.2 and lsp4e 0.19.8 or later.</td>
+              <td>Comes with the main feature when tm4e and lsp4e are installed.</td>
+            </tr>
+            <tr>
+              <th scope="row">AfterGit Merge Resolver: AI Agents (MCP)</th>
+              <td>A local Model Context Protocol server (127.0.0.1 only, with a token) through which agents you run
+                yourself read conflicts and propose resolutions.</td>
+              <td>Optional. Off until you allow it in Preferences.</td>
+            </tr>
+            <tr>
+              <th scope="row">AfterGit Merge Resolver: Resolve with AI</th>
+              <td>Asks a language model (the Anthropic Messages API or an OpenAI-compatible server such as OpenAI,
+                Ollama or LM Studio) to resolve a conflict.</td>
+              <td>Optional. Nothing is sent until you allow it and configure a model.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Java Support and Languages are optional parts of the main feature: Eclipse adds them on its own when their
+        prerequisites are present, and leaves them out otherwise. If you install JDT, tm4e or lsp4e later, untick
+        <strong>Group items by category</strong> in the install dialog and select the part on its own.</p>
+      <p>Both AI features are separate entries that the main feature does not include, and AfterGit works fully
+        without them. Even when installed they do nothing until you switch them on under
+        <strong>Preferences &rarr; AfterGit</strong>; every answer is shown as a purple &#10024; block for you to
+        review, and nothing saves or stages a file.</p>
+    </section>
+
+    <section aria-labelledby="offline">
+      <h2 id="offline">Offline, from the release zip</h2>
+      <ol class="steps">
+        <li>Download <code>aftergit-&lt;version&gt;-site.zip</code> from the
+          <a href="https://github.com/slavus/aftergit/releases">releases page</a>. It holds the same p2 repository
+          as the update site.</li>
+        <li>In Eclipse choose <strong>Help &rarr; Install New Software&hellip; &rarr; Add&hellip; &rarr;
+          Archive&hellip;</strong> and select the zip.</li>
+        <li>Select the features as above, finish and restart.</li>
+      </ol>
+      <p>Without a network connection Eclipse cannot fetch missing prerequisites, so EGit (and JDT, tm4e and lsp4e
+        for the optional parts) must already be installed; untick <strong>Contact all update sites during install to
+        find required software</strong> to keep Eclipse from trying.</p>
+    </section>
+
+    <section aria-labelledby="build">
+      <h2 id="build">From a local build</h2>
+      <p>Build with <code>mvn clean verify</code> (JDK 21 or later, Maven 3.9 or later; see the
+        <a href="https://github.com/slavus/aftergit#build-from-source">README</a>), then use
+        <strong>Add&hellip; &rarr; Local&hellip;</strong> with the folder
+        <code>releng/net.aftergit.merge.site/target/repository</code>.</p>
+    </section>
+
+    <section aria-labelledby="update">
+      <h2 id="update">Update</h2>
+      <p>Choose <strong>Help &rarr; Check for Updates</strong>. Eclipse looks at the update site you added and
+        offers the newest release. Read the
+        <a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">changelog</a> first: before 1.0 any
+        release may change behaviour and preferences.</p>
+    </section>
+
+    <section aria-labelledby="uninstall">
+      <h2 id="uninstall">Uninstall</h2>
+      <ol class="steps">
+        <li>Choose <strong>Help &rarr; About Eclipse IDE &rarr; Installation Details</strong> and open the
+          <strong>Installed Software</strong> tab.</li>
+        <li>Select the AfterGit features, press <strong>Uninstall&hellip;</strong>, finish and restart.</li>
+      </ol>
+      <p>EGit&rsquo;s own merge editor takes over again. Preferences you shared through a project&rsquo;s
+        <code>.settings/net.aftergit.merge.ui.prefs</code> stay in the project until you delete the file.</p>
+    </section>
+
+    <section aria-labelledby="next">
+      <h2 id="next">Next</h2>
+      <p>Open a conflicting file: the <a href="usage.html">quick start</a> shows the first steps, and the full
+        <a href="https://github.com/slavus/aftergit/blob/main/docs/INSTALL.md">user guide</a> covers every
+        command and preference.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="https://github.com/slavus/aftergit">GitHub</a></li>
+      <li><a href="https://github.com/slavus/aftergit/releases">Releases</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">Changelog</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/docs/INSTALL.md">User guide</a></li>
+      <li><a href="https://github.com/slavus/aftergit/issues">Issues</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/LICENSE">License (EPL-2.0)</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/NOTICE">NOTICE</a></li>
+    </ul>
+    <p>Copyright &copy; 2026 Hrvoje Slavicek and the AfterGit contributors. AfterGit is licensed under the Eclipse
+      Public License 2.0; parts of the merge core are derived from IntelliJ Community and stay under the Apache
+      License, Version 2.0 (see NOTICE).</p>
+    <p>Eclipse is a trademark of the Eclipse Foundation. AfterGit is not affiliated with or endorsed by the Eclipse
+      Foundation.</p>
+  </div>
+</footer>
+</body>
+</html>

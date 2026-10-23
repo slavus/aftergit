@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace="net.aftergit.merge.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+  <annotation>
+    <appInfo>
+      <meta.schema plugin="net.aftergit.merge.ui" id="net.aftergit.merge.aiResolver" name="AfterGit AI Resolvers"/>
+    </appInfo>
+    <documentation>
+      Contributes resolvers that ask a language model to resolve a conflict ("Resolve with AI"). While at least one
+      of them is ready (AiResolver.ready()), the More menu of the resolver and the context menu of its result offer
+      "Resolve Conflict with AI" and "Resolve All Conflicts with AI"; with several ready ones these become submenus by
+      AiResolver.name(). Each answer becomes an AI-resolved block to review, or waits for the user when the block was
+      touched. AfterGit asks ready() whenever it may show the entries, so it must be fast, never block and do no I/O;
+      resolve() runs on a background thread and should give up soon after its cancelled supplier turns true. Before
+      the first request to a resolver whose remote() is true AfterGit asks the user. The contributions are read once
+      per session; one that cannot be created is logged and left out.
+    </documentation>
+  </annotation>
+
+  <element name="extension">
+    <annotation>
+      <appInfo>
+        <meta.element/>
+      </appInfo>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element ref="resolver" minOccurs="1" maxOccurs="unbounded"/>
+      </sequence>
+      <attribute name="point" type="string" use="required"/>
+      <attribute name="id" type="string"/>
+      <attribute name="name" type="string">
+        <annotation>
+          <appInfo>
+            <meta.attribute translatable="true"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+    </complexType>
+  </element>
+
+  <element name="resolver">
+    <complexType>
+      <attribute name="id" type="string" use="required">
+        <annotation>
+          <documentation>Unique id of the resolver; keys the user's "do not ask again" for remote resolvers.</documentation>
+        </annotation>
+      </attribute>
+      <attribute name="name" type="string" use="required">
+        <annotation>
+          <documentation>Shown when AiResolver.name() gives nothing.</documentation>
+          <appInfo>
+            <meta.attribute translatable="true"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+      <attribute name="class" type="string" use="required">
+        <annotation>
+          <documentation>The resolver, with a public constructor without arguments.</documentation>
+          <appInfo>
+            <meta.attribute kind="java" basedOn=":net.aftergit.merge.core.ai.AiResolver"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+    </complexType>
+  </element>
+
+  <annotation>
+    <appInfo>
+      <meta.section type="examples"/>
+    </appInfo>
+    <documentation>
+      &lt;extension point="net.aftergit.merge.aiResolver"&gt;
+        &lt;resolver id="net.aftergit.merge.ai.model" name="%resolver.model.name"
+            class="net.aftergit.merge.ai.ModelResolver"/&gt;
+      &lt;/extension&gt;
+    </documentation>
+  </annotation>
+</schema>

@@ -1,0 +1,10 @@
+{
+  "name": "AfterGit test language",
+  "scopeName": "source.agdiag",
+  "fileTypes": ["agdiag"],
+  "patterns": [
+    { "name": "comment.line.number-sign.agdiag", "match": "#.*$" },
+    { "name": "keyword.control.agdiag", "match": "\\b(def|use|import|warn|calc)\\b" },
+    { "name": "string.quoted.double.agdiag", "match": "\"[^\"]*\"" }
+  ]
+}

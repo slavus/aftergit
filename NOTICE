@@ -1,0 +1,44 @@
+AfterGit Merge Resolver
+https://github.com/slavus/aftergit
+
+Copyright (c) 2026 Hrvoje Slavicek and the AfterGit contributors.
+
+This program and the accompanying materials are made available under the
+terms of the Eclipse Public License 2.0, which is available in the file
+LICENSE and at https://www.eclipse.org/legal/epl-2.0/.
+
+SPDX-License-Identifier: EPL-2.0
+
+------------------------------------------------------------------------------
+Third-party content
+------------------------------------------------------------------------------
+
+IntelliJ Community (Apache License, Version 2.0)
+
+This product includes software derived from IntelliJ Community
+(https://github.com/JetBrains/intellij-community),
+Copyright 2000-2026 JetBrains s.r.o. and contributors,
+licensed under the Apache License, Version 2.0 (LICENSE-APACHE-2.0.txt in
+META-INF of the net.aftergit.merge.core bundle, in the source tree under
+bundles/net.aftergit.merge.core/META-INF-resources, and at
+https://www.apache.org/licenses/LICENSE-2.0).
+
+The derived files keep their original notice in a header comment and are
+distributed under the Apache License, Version 2.0:
+  net.aftergit.merge.core.merge.FairMergeBuilder
+  net.aftergit.merge.core.merge.MergeTypes
+  net.aftergit.merge.core.model.RangeUpdater
+  net.aftergit.merge.core.resolve.GreedyResolver
+  net.aftergit.merge.core.resolve.SimpleResolver
+  net.aftergit.merge.core.resolve.WordResolution
+Test cases derived from IntelliJ Community tests (not shipped):
+  net.aftergit.merge.core.model.RangeUpdaterTest
+  net.aftergit.merge.core.resolve.GreedyResolverTest
+  net.aftergit.merge.core.resolve.SimpleResolverTest
+
+Libraries
+
+The AfterGit bundles embed no third-party libraries. They use, as separate
+bundles provided by the Eclipse installation, the Eclipse Platform, EGit and
+JGit, and optionally JDT, TM4E, LSP4E/LSP4J and Gson; each comes with its own
+license.

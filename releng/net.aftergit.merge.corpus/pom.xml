@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.aftergit</groupId>
+    <artifactId>aftergit-parent</artifactId>
+    <version>0.0.1</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>net.aftergit.merge.corpus</artifactId>
+  <name>AfterGit Merge Corpus</name>
+  <description>Replays real merges through the merge core (spec §10.3); built only with -Pcorpus.</description>
+
+  <properties>
+    <aftergit.corpus.dir>${user.home}/.cache/aftergit/corpus</aftergit.corpus.dir>
+    <aftergit.corpus.list>${maven.multiModuleProjectDirectory}/releng/corpus/repos.txt</aftergit.corpus.list>
+    <aftergit.corpus.maxMerges>200</aftergit.corpus.maxMerges>
+    <aftergit.corpus.maxFiles>2000</aftergit.corpus.maxFiles>
+    <aftergit.corpus.javac>true</aftergit.corpus.javac>
+    <aftergit.corpus.newerVersion>false</aftergit.corpus.newerVersion>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.aftergit</groupId>
+      <artifactId>net.aftergit.merge.core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <aftergit.corpus.dir>${aftergit.corpus.dir}</aftergit.corpus.dir>
+            <aftergit.corpus.list>${aftergit.corpus.list}</aftergit.corpus.list>
+            <aftergit.corpus.calc>${maven.multiModuleProjectDirectory}/bundles/net.aftergit.merge.core/src/test/resources/fixtures/calc</aftergit.corpus.calc>
+            <aftergit.corpus.out>${project.build.directory}/corpus</aftergit.corpus.out>
+            <aftergit.corpus.maxMerges>${aftergit.corpus.maxMerges}</aftergit.corpus.maxMerges>
+            <aftergit.corpus.maxFiles>${aftergit.corpus.maxFiles}</aftergit.corpus.maxFiles>
+            <aftergit.corpus.javac>${aftergit.corpus.javac}</aftergit.corpus.javac>
+            <aftergit.corpus.newerVersion>${aftergit.corpus.newerVersion}</aftergit.corpus.newerVersion>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

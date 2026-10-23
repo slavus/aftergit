@@ -1,0 +1,11 @@
+Bundle-SymbolicName: net.aftergit.merge.core
+Bundle-Name: AfterGit Merge Core
+Bundle-Vendor: AfterGit
+Bundle-License: EPL-2.0;link="https://www.eclipse.org/legal/epl-2.0/",Apache-2.0;link="https://www.apache.org/licenses/LICENSE-2.0";description="files derived from IntelliJ Community, see META-INF/NOTICE"
+Bundle-DocURL: https://github.com/slavus/aftergit
+Export-Package: net.aftergit.merge.core.*;version="${versionmask;===;${version_cleanup;${project.version}}}"
+-noextraheaders: true
+-includeresource: \
+  META-INF/LICENSE=${.}/../../LICENSE,\
+  META-INF/NOTICE=${.}/../../NOTICE,\
+  META-INF/LICENSE-APACHE-2.0.txt=META-INF-resources/LICENSE-APACHE-2.0.txt

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="net.aftergit.merge.feature" label="AfterGit Merge Resolver" version="0.0.1"
+         provider-name="AfterGit">
+  <description url="https://github.com/slavus/aftergit">Three-pane git conflict resolver with automatic resolution.</description>
+  <copyright url="https://github.com/slavus/aftergit">Copyright (c) 2026 Hrvoje Slavicek and the AfterGit contributors.</copyright>
+  <license url="https://www.eclipse.org/legal/epl-2.0/">AfterGit is made available under the terms of the Eclipse Public License 2.0 (SPDX-License-Identifier: EPL-2.0), https://www.eclipse.org/legal/epl-2.0/. Portions of the bundle net.aftergit.merge.core are derived from IntelliJ Community and are licensed under the Apache License, Version 2.0 (META-INF/NOTICE and META-INF/LICENSE-APACHE-2.0.txt in that bundle). See the files LICENSE and NOTICE at https://github.com/slavus/aftergit.</license>
+  <requires>
+    <import plugin="org.eclipse.compare"/>
+    <import plugin="org.eclipse.egit.core"/>
+    <import plugin="org.eclipse.jgit"/>
+  </requires>
+  <includes id="net.aftergit.merge.jdt.feature" version="0.0.0" optional="true"/>
+  <includes id="net.aftergit.merge.lsp.feature" version="0.0.0" optional="true"/>
+  <plugin id="net.aftergit.merge.core" version="0.0.0" unpack="false"/>
+  <plugin id="net.aftergit.merge.git" version="0.0.0" unpack="false"/>
+  <plugin id="net.aftergit.merge.ui" version="0.0.0" unpack="false"/>
+</feature>

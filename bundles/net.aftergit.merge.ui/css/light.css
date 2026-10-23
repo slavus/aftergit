@@ -1,0 +1,74 @@
+/* The AfterGit colours of the light themes, the values of plugin.xml. Colour definitions, so Colors and Fonts and
+ * the theme engine keep a value per theme, as in the dark theme (css/dark.css). */
+
+ColorDefinition#net-aftergit-merge-color-added-strong {
+  color: rgb(191, 232, 191);
+}
+
+ColorDefinition#net-aftergit-merge-color-added-light {
+  color: rgb(237, 248, 237);
+}
+
+ColorDefinition#net-aftergit-merge-color-removed-strong {
+  color: rgb(255, 153, 153);
+}
+
+ColorDefinition#net-aftergit-merge-color-removed-light {
+  color: rgb(255, 235, 235);
+}
+
+ColorDefinition#net-aftergit-merge-color-modified-strong {
+  color: rgb(255, 223, 153);
+}
+
+ColorDefinition#net-aftergit-merge-color-modified-light {
+  color: rgb(255, 238, 196);
+}
+
+ColorDefinition#net-aftergit-merge-color-conflict-strong {
+  color: rgb(242, 139, 122);
+}
+
+ColorDefinition#net-aftergit-merge-color-conflict-light {
+  color: rgb(251, 205, 197);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-strong {
+  color: rgb(31, 157, 139);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-light {
+  color: rgb(217, 242, 238);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-hatch {
+  color: rgb(195, 233, 226);
+}
+
+ColorDefinition#net-aftergit-merge-color-dropped-light {
+  color: rgb(241, 241, 241);
+}
+
+ColorDefinition#net-aftergit-merge-color-dropped-text {
+  color: rgb(154, 154, 154);
+}
+
+ColorDefinition#net-aftergit-merge-color-edited-strong {
+  color: rgb(107, 107, 138);
+}
+
+ColorDefinition#net-aftergit-merge-color-taken-strong {
+  color: rgb(224, 168, 0);
+}
+
+ColorDefinition#net-aftergit-merge-color-current {
+  color: COLOR-LIST-SELECTION;
+}
+
+ColorDefinition#net-aftergit-merge-color-ai-strong {
+  color: rgb(131, 77, 240);
+}
+
+ColorDefinition#net-aftergit-merge-color-ai-light {
+  color: rgb(239, 230, 255);
+}

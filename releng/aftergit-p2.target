@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<!-- The default target platform (CI and any machine without a local Eclipse): Eclipse 2026-03 (4.39) with EGit and
+     JGit 7.6, JDT, TM4E 0.17.2, Wild Web Developer 1.4.0 from the simultaneous release repository of 2026-03, and
+     LSP4E 0.19.8 from its own release repository (the simultaneous release has 0.19.7, AfterGit needs 0.19.8).
+     The versions match the Eclipse IDE 2026-03 installation the project is developed with; releng/aftergit.target
+     uses such an installation directly (-Daftergit.eclipse.home=...). -->
+<target name="aftergit-p2">
+  <locations>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false"
+              type="InstallableUnit">
+      <repository location="https://download.eclipse.org/releases/2026-03/202603111000/"/>
+      <repository location="https://download.eclipse.org/lsp4e/releases/0.30.1/"/>
+      <unit id="org.eclipse.platform.feature.group" version="4.39.0.v20260226-0420"/>
+      <unit id="org.eclipse.jdt.feature.group" version="3.20.500.v20260226-0420"/>
+      <unit id="org.eclipse.egit.feature.group" version="7.6.0.202603022253-r"/>
+      <unit id="org.eclipse.jgit.feature.group" version="7.6.0.202603022253-r"/>
+      <unit id="org.eclipse.tm4e.feature.feature.group" version="0.17.2.202602051927"/>
+      <unit id="org.eclipse.lsp4e" version="0.19.8.202604011449"/>
+      <unit id="org.eclipse.lsp4j" version="1.0.0.v20260209-1721"/>
+      <unit id="org.eclipse.lsp4j.jsonrpc" version="1.0.0.v20260209-1721"/>
+      <unit id="org.eclipse.wildwebdeveloper.feature.feature.group" version="1.4.0.202511281851"/>
+      <unit id="org.eclipse.wildwebdeveloper.xml.feature.feature.group" version="1.3.8.202511131403"/>
+      <unit id="com.google.gson" version="2.13.2"/>
+      <unit id="junit-jupiter-api" version="6.0.3"/>
+      <unit id="junit-jupiter-engine" version="6.0.3"/>
+      <unit id="junit-jupiter-params" version="6.0.3"/>
+      <unit id="junit-platform-launcher" version="6.0.3"/>
+      <unit id="junit-platform-suite-api" version="6.0.3"/>
+    </location>
+  </locations>
+  <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
+</target>

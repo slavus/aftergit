@@ -1,0 +1,14 @@
+target/
+bin/
+*.class
+.idea/
+*.iml
+.DS_Store
+docs/smartgit-icons/
+.tycho-consumer-pom.xml
+# visual reference material kept privately (third-party, not published)
+docs/smartgit-compare-spec.md
+docs/smartgit-screens/
+# local build settings, e.g. -Daftergit.eclipse.home=/path/to/eclipse for the local target
+.mvn/maven.config
+docs/plans/

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.eclipse.ui.preferencePages">
+    <page id="net.aftergit.merge.mcp.page" name="%page.agents" category="net.aftergit.merge.preferences"
+        class="net.aftergit.merge.mcp.ui.AgentsPreferencePage"/>
+  </extension>
+  <extension point="org.eclipse.ui.startup">
+    <startup class="net.aftergit.merge.mcp.ui.AgentStartup"/>
+  </extension>
+</plugin>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="net.aftergit.merge.resolvers">
+    <resolver
+        id="members"
+        name="%resolver.members.name"
+        class="net.aftergit.merge.jdt.JavaMembersResolver"/>
+  </extension>
+</plugin>

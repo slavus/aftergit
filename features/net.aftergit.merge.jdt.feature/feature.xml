@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="net.aftergit.merge.jdt.feature" label="AfterGit Merge Resolver: Java Support" version="0.0.1"
+         provider-name="AfterGit">
+  <description url="https://github.com/slavus/aftergit">Java editor, syntax colors and errors in the AfterGit merge resolver. Needs the Eclipse Java development tools.</description>
+  <copyright url="https://github.com/slavus/aftergit">Copyright (c) 2026 Hrvoje Slavicek and the AfterGit contributors.</copyright>
+  <license url="https://www.eclipse.org/legal/epl-2.0/">AfterGit is made available under the terms of the Eclipse Public License 2.0 (SPDX-License-Identifier: EPL-2.0), https://www.eclipse.org/legal/epl-2.0/. See the files LICENSE and NOTICE at https://github.com/slavus/aftergit.</license>
+  <requires>
+    <import plugin="org.eclipse.jdt.core"/>
+    <import plugin="org.eclipse.jdt.ui"/>
+    <import plugin="net.aftergit.merge.core"/>
+  </requires>
+  <plugin id="net.aftergit.merge.jdt" version="0.0.0" unpack="false"/>
+</feature>

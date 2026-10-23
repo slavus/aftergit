@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="net.aftergit.merge.mcp.feature" label="AfterGit Merge Resolver: AI Agents (MCP)" version="0.0.1"
+         provider-name="AfterGit">
+  <description url="https://github.com/slavus/aftergit">Lets AI agents you run yourself read the merge conflicts of the workspace over the Model Context Protocol and propose resolutions, which you review in AfterGit. Off until you allow it under Preferences &gt; AfterGit &gt; AI Agents (MCP). AfterGit works without this feature.</description>
+  <copyright url="https://github.com/slavus/aftergit">Copyright (c) 2026 Hrvoje Slavicek and the AfterGit contributors.</copyright>
+  <license url="https://www.eclipse.org/legal/epl-2.0/">AfterGit is made available under the terms of the Eclipse Public License 2.0 (SPDX-License-Identifier: EPL-2.0), https://www.eclipse.org/legal/epl-2.0/. See the files LICENSE and NOTICE at https://github.com/slavus/aftergit.</license>
+  <requires>
+    <import feature="net.aftergit.merge.feature" version="0.0.1" match="greaterOrEqual"/>
+    <import plugin="com.google.gson"/>
+    <import plugin="org.eclipse.equinox.security"/>
+  </requires>
+  <plugin id="net.aftergit.merge.mcp" version="0.0.0" unpack="false"/>
+</feature>

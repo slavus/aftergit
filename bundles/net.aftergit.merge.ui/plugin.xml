@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension-point id="net.aftergit.merge.resolvers" name="%extension-point.resolvers.name" schema="schema/resolvers.exsd"/>
+  <extension-point id="net.aftergit.merge.aiResolver" name="%extension-point.aiResolver.name" schema="schema/aiResolver.exsd"/>
+  <extension point="org.eclipse.ui.preferencePages">
+    <page id="net.aftergit.merge.preferences" name="%page.aftergit" class="net.aftergit.merge.ui.AfterGitPreferencePage"/>
+    <page id="net.aftergit.merge.preferences.appearance" name="%page.appearance" category="net.aftergit.merge.preferences" class="net.aftergit.merge.ui.AppearancePreferencePage"/>
+  </extension>
+  <extension point="org.eclipse.ui.propertyPages">
+    <page id="net.aftergit.merge.properties" name="%page.aftergit" class="net.aftergit.merge.ui.AfterGitPropertyPage">
+      <enabledWhen>
+        <adapt type="org.eclipse.core.resources.IProject"/>
+      </enabledWhen>
+    </page>
+  </extension>
+  <extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+        id="net.aftergit.merge.ui.conflictTester"
+        class="net.aftergit.merge.ui.ConflictPropertyTester"
+        namespace="net.aftergit.merge.ui"
+        properties="conflicted,mergeTool"
+        type="org.eclipse.core.resources.IResource"/>
+    <propertyTester
+        id="net.aftergit.merge.ui.conflictLocationTester"
+        class="net.aftergit.merge.ui.ConflictPropertyTester"
+        namespace="net.aftergit.merge.ui"
+        properties="mergeTool"
+        type="org.eclipse.core.runtime.IPath"/>
+  </extension>
+  <extension point="org.eclipse.ui.commands">
+    <category id="net.aftergit.merge.category" name="%category.name"/>
+    <command id="net.aftergit.merge.commands.nextChange" categoryId="net.aftergit.merge.category" name="%command.nextChange.name" description="%command.nextChange.description"/>
+    <command id="net.aftergit.merge.commands.prevChange" categoryId="net.aftergit.merge.category" name="%command.prevChange.name" description="%command.prevChange.description"/>
+    <command id="net.aftergit.merge.commands.nextConflict" categoryId="net.aftergit.merge.category" name="%command.nextConflict.name" description="%command.nextConflict.description"/>
+    <command id="net.aftergit.merge.commands.prevConflict" categoryId="net.aftergit.merge.category" name="%command.prevConflict.name" description="%command.prevConflict.description"/>
+    <command id="net.aftergit.merge.commands.nextAnyConflict" categoryId="net.aftergit.merge.category" name="%command.nextAnyConflict.name" description="%command.nextAnyConflict.description"/>
+    <command id="net.aftergit.merge.commands.prevAnyConflict" categoryId="net.aftergit.merge.category" name="%command.prevAnyConflict.name" description="%command.prevAnyConflict.description"/>
+    <command id="net.aftergit.merge.commands.nextError" categoryId="net.aftergit.merge.category" name="%command.nextError.name" description="%command.nextError.description"/>
+    <command id="net.aftergit.merge.commands.prevError" categoryId="net.aftergit.merge.category" name="%command.prevError.name" description="%command.prevError.description"/>
+    <command id="net.aftergit.merge.commands.nextAutoResolved" categoryId="net.aftergit.merge.category" name="%command.nextAutoResolved.name" description="%command.nextAutoResolved.description"/>
+    <command id="net.aftergit.merge.commands.prevAutoResolved" categoryId="net.aftergit.merge.category" name="%command.prevAutoResolved.name" description="%command.prevAutoResolved.description"/>
+    <command id="net.aftergit.merge.commands.takeLeft" categoryId="net.aftergit.merge.category" name="%command.takeLeft.name" description="%command.takeLeft.description"/>
+    <command id="net.aftergit.merge.commands.takeRight" categoryId="net.aftergit.merge.category" name="%command.takeRight.name" description="%command.takeRight.description"/>
+    <command id="net.aftergit.merge.commands.toggleStructure" categoryId="net.aftergit.merge.category" name="%command.toggleStructure.name" description="%command.toggleStructure.description"/>
+    <command id="net.aftergit.merge.commands.takeBoth" categoryId="net.aftergit.merge.category" name="%command.takeBoth.name" description="%command.takeBoth.description"/>
+    <command id="net.aftergit.merge.commands.ignore" categoryId="net.aftergit.merge.category" name="%command.ignore.name" description="%command.ignore.description"/>
+    <command id="net.aftergit.merge.commands.revert" categoryId="net.aftergit.merge.category" name="%command.revert.name" description="%command.revert.description"/>
+    <command id="net.aftergit.merge.commands.markReviewed" categoryId="net.aftergit.merge.category" name="%command.markReviewed.name" description="%command.markReviewed.description"/>
+    <command id="net.aftergit.merge.commands.showProposal" categoryId="net.aftergit.merge.category" name="%command.showProposal.name" description="%command.showProposal.description"/>
+    <command id="net.aftergit.merge.commands.aiResolveConflict" categoryId="net.aftergit.merge.category" name="%command.aiResolveConflict.name" description="%command.aiResolveConflict.description"/>
+    <command id="net.aftergit.merge.commands.aiResolveAll" categoryId="net.aftergit.merge.category" name="%command.aiResolveAll.name" description="%command.aiResolveAll.description"/>
+    <command id="net.aftergit.merge.commands.saveAndMarkResolved" categoryId="net.aftergit.merge.category" name="%command.saveAndMarkResolved.name" description="%command.saveAndMarkResolved.description"/>
+    <command id="net.aftergit.merge.commands.compareOursBase" categoryId="net.aftergit.merge.category" name="%command.compareOursBase.name" description="%command.compareOursBase.description"/>
+    <command id="net.aftergit.merge.commands.compareTheirsBase" categoryId="net.aftergit.merge.category" name="%command.compareTheirsBase.name" description="%command.compareTheirsBase.description"/>
+    <command id="net.aftergit.merge.commands.compareOursTheirs" categoryId="net.aftergit.merge.category" name="%command.compareOursTheirs.name" description="%command.compareOursTheirs.description"/>
+    <command id="net.aftergit.merge.commands.layoutAll" categoryId="net.aftergit.merge.category" name="%command.layoutAll.name" description="%command.layoutAll.description"/>
+    <command id="net.aftergit.merge.commands.layoutLeftResult" categoryId="net.aftergit.merge.category" name="%command.layoutLeftResult.name" description="%command.layoutLeftResult.description"/>
+    <command id="net.aftergit.merge.commands.layoutResultRight" categoryId="net.aftergit.merge.category" name="%command.layoutResultRight.name" description="%command.layoutResultRight.description"/>
+    <command id="net.aftergit.merge.commands.layoutResultBelow" categoryId="net.aftergit.merge.category" name="%command.layoutResultBelow.name" description="%command.layoutResultBelow.description"/>
+    <command
+        id="net.aftergit.merge.commands.resolve"
+        categoryId="net.aftergit.merge.category"
+        name="%command.resolve.name"
+        description="%command.resolve.description"
+        defaultHandler="net.aftergit.merge.ui.ResolveConflictHandler"/>
+    <command
+        id="net.aftergit.merge.commands.resolveAll"
+        categoryId="net.aftergit.merge.category"
+        name="%command.resolveAll.name"
+        description="%command.resolveAll.description"
+        defaultHandler="net.aftergit.merge.ui.ResolveAllHandler">
+      <commandParameter id="net.aftergit.merge.commands.resolveAll.scope" name="%command.resolveAll.scope" optional="true"/>
+    </command>
+  </extension>
+  <!-- EGit's Merge Tool (Git Staging: double-click, Enter, "Merge Tool") opens AfterGit on one text conflict -->
+  <extension point="org.eclipse.ui.handlers">
+    <handler commandId="org.eclipse.egit.ui.team.MergeTool" class="net.aftergit.merge.ui.MergeToolHandler">
+      <activeWhen>
+        <with variable="selection">
+          <count value="1"/>
+          <iterate ifEmpty="false">
+            <or>
+              <adapt type="org.eclipse.core.resources.IResource">
+                <test property="net.aftergit.merge.ui.mergeTool" forcePluginActivation="true"/>
+              </adapt>
+              <!-- Git Staging gives no IResource for a file of a project EGit does not manage, only its location -->
+              <adapt type="org.eclipse.core.runtime.IPath">
+                <test property="net.aftergit.merge.ui.mergeTool" forcePluginActivation="true"/>
+              </adapt>
+            </or>
+          </iterate>
+        </with>
+      </activeWhen>
+    </handler>
+  </extension>
+  <!-- files AfterGit saved that still need attention (Problems: type "AfterGit") -->
+  <extension id="net.aftergit.merge.attention" point="org.eclipse.core.resources.markers" name="%marker.attention">
+    <super type="org.eclipse.core.resources.problemmarker"/>
+    <persistent value="false"/>
+    <attribute name="net.aftergit.merge.attentionKind"/>
+  </extension>
+  <extension point="org.eclipse.ui.contexts">
+    <context id="net.aftergit.merge.scope" name="%context.name" parentId="org.eclipse.ui.textEditorScope"/>
+  </extension>
+  <extension point="org.eclipse.ui.bindings">
+    <key commandId="net.aftergit.merge.commands.nextChange" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+."/>
+    <key commandId="net.aftergit.merge.commands.prevChange" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+,"/>
+    <key commandId="net.aftergit.merge.commands.nextConflict" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M2+."/>
+    <key commandId="net.aftergit.merge.commands.prevConflict" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M2+,"/>
+    <key commandId="net.aftergit.merge.commands.nextAnyConflict" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+."/>
+    <key commandId="net.aftergit.merge.commands.prevAnyConflict" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+,"/>
+    <key commandId="net.aftergit.merge.commands.takeLeft" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+ARROW_LEFT"/>
+    <key commandId="net.aftergit.merge.commands.takeRight" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+ARROW_RIGHT"/>
+    <key commandId="net.aftergit.merge.commands.toggleStructure" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+S"/>
+    <!-- M1+M3+I: in the resolver only, before the bindings of other plug-ins (a chat's, for one) -->
+    <key commandId="net.aftergit.merge.commands.takeBoth" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+B"/>
+    <key commandId="net.aftergit.merge.commands.ignore" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+I"/>
+    <key commandId="net.aftergit.merge.commands.layoutAll" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+1"/>
+    <key commandId="net.aftergit.merge.commands.layoutLeftResult" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+2"/>
+    <key commandId="net.aftergit.merge.commands.layoutResultRight" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+3"/>
+    <key commandId="net.aftergit.merge.commands.layoutResultBelow" contextId="net.aftergit.merge.scope" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+M3+4"/>
+  </extension>
+  <extension point="org.eclipse.ui.menus">
+    <!-- the Team menu of EGit, next to its Merge Tool -->
+    <menuContribution locationURI="popup:team.main?after=group4">
+      <command commandId="net.aftergit.merge.commands.resolve" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.oneConflictedFile"/>
+        </visibleWhen>
+      </command>
+      <command commandId="net.aftergit.merge.commands.resolveAll" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.resources"/>
+        </visibleWhen>
+      </command>
+      <command commandId="net.aftergit.merge.commands.resolveAll" label="%menu.resolveAllInRepository" style="push">
+        <parameter name="net.aftergit.merge.commands.resolveAll.scope" value="repository"/>
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.resources"/>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+    <menuContribution locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?after=additions">
+      <command commandId="net.aftergit.merge.commands.resolve" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.oneConflictedFile"/>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+    <menuContribution locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+      <command commandId="net.aftergit.merge.commands.resolve" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.oneConflictedFile"/>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+    <!-- Git Staging registers no context menu for contributions: its view menu instead -->
+    <menuContribution locationURI="menu:org.eclipse.egit.ui.StagingView?after=additions">
+      <command commandId="net.aftergit.merge.commands.resolve" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.oneConflictedFile"/>
+        </visibleWhen>
+      </command>
+      <command commandId="net.aftergit.merge.commands.resolveAll" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.resources"/>
+        </visibleWhen>
+      </command>
+      <command commandId="net.aftergit.merge.commands.resolveAll" label="%menu.resolveAllInRepository" style="push">
+        <parameter name="net.aftergit.merge.commands.resolveAll.scope" value="repository"/>
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.resources"/>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+    <!-- a button appended to the toolbar of the Git Staging view -->
+    <menuContribution locationURI="toolbar:org.eclipse.egit.ui.StagingView?after=additions">
+      <command commandId="net.aftergit.merge.commands.resolve" icon="icons/resolve.png" style="push">
+        <visibleWhen checkEnabled="false">
+          <reference definitionId="net.aftergit.merge.ui.oneConflictedFile"/>
+        </visibleWhen>
+      </command>
+    </menuContribution>
+  </extension>
+  <extension point="org.eclipse.ui.commandImages">
+    <image commandId="net.aftergit.merge.commands.resolve" icon="icons/resolve.png"/>
+  </extension>
+  <extension point="org.eclipse.core.expressions.definitions">
+    <definition id="net.aftergit.merge.ui.oneConflictedFile">
+      <with variable="selection">
+        <count value="1"/>
+        <iterate ifEmpty="false">
+          <adapt type="org.eclipse.core.resources.IResource">
+            <test property="net.aftergit.merge.ui.conflicted" forcePluginActivation="true"/>
+          </adapt>
+        </iterate>
+      </with>
+    </definition>
+    <definition id="net.aftergit.merge.ui.resources">
+      <with variable="selection">
+        <iterate ifEmpty="false" operator="or">
+          <adapt type="org.eclipse.core.resources.IResource"/>
+        </iterate>
+      </with>
+    </definition>
+  </extension>
+  <extension point="org.eclipse.ui.themes">
+    <themeElementCategory id="net.aftergit.merge.colors" label="%colors.category">
+      <description>%colors.category.description</description>
+    </themeElementCategory>
+    <themeElementCategory id="net.aftergit.merge.colors.changes" parentId="net.aftergit.merge.colors" label="%colors.changes">
+      <description>%colors.changes.description</description>
+    </themeElementCategory>
+    <themeElementCategory id="net.aftergit.merge.colors.states" parentId="net.aftergit.merge.colors" label="%colors.states">
+      <description>%colors.states.description</description>
+    </themeElementCategory>
+    <themeElementCategory id="net.aftergit.merge.colors.current" parentId="net.aftergit.merge.colors" label="%colors.current">
+      <description>%colors.current.description</description>
+    </themeElementCategory>
+    <themeElementCategory id="net.aftergit.merge.colors.ai" parentId="net.aftergit.merge.colors" label="%colors.ai">
+      <description>%colors.ai.description</description>
+    </themeElementCategory>
+    <fontDefinition id="net.aftergit.merge.font.panes" categoryId="net.aftergit.merge.colors" label="%font.panes" defaultsTo="org.eclipse.jface.textfont">
+      <description>%font.panes.description</description>
+    </fontDefinition>
+    <colorDefinition id="net.aftergit.merge.color.added.strong" categoryId="net.aftergit.merge.colors.changes" label="%color.added.strong" value="191,232,191">
+      <description>%color.added.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.added.light" categoryId="net.aftergit.merge.colors.changes" label="%color.added.light" value="237,248,237">
+      <description>%color.added.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.removed.strong" categoryId="net.aftergit.merge.colors.changes" label="%color.removed.strong" value="255,153,153">
+      <description>%color.removed.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.removed.light" categoryId="net.aftergit.merge.colors.changes" label="%color.removed.light" value="255,235,235">
+      <description>%color.removed.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.modified.strong" categoryId="net.aftergit.merge.colors.changes" label="%color.modified.strong" value="255,223,153">
+      <description>%color.modified.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.modified.light" categoryId="net.aftergit.merge.colors.changes" label="%color.modified.light" value="255,238,196">
+      <description>%color.modified.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.conflict.strong" categoryId="net.aftergit.merge.colors.states" label="%color.conflict.strong" value="242,139,122">
+      <description>%color.conflict.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.conflict.light" categoryId="net.aftergit.merge.colors.states" label="%color.conflict.light" value="251,205,197">
+      <description>%color.conflict.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.auto.strong" categoryId="net.aftergit.merge.colors.states" label="%color.auto.strong" value="31,157,139">
+      <description>%color.auto.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.auto.light" categoryId="net.aftergit.merge.colors.states" label="%color.auto.light" value="217,242,238">
+      <description>%color.auto.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.auto.hatch" categoryId="net.aftergit.merge.colors.states" label="%color.auto.hatch" value="195,233,226">
+      <description>%color.auto.hatch.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.dropped.light" categoryId="net.aftergit.merge.colors.states" label="%color.dropped.light" value="241,241,241">
+      <description>%color.dropped.light.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.dropped.text" categoryId="net.aftergit.merge.colors.states" label="%color.dropped.text" value="154,154,154">
+      <description>%color.dropped.text.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.edited.strong" categoryId="net.aftergit.merge.colors.states" label="%color.edited.strong" value="107,107,138">
+      <description>%color.edited.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.taken.strong" categoryId="net.aftergit.merge.colors.states" label="%color.taken.strong" value="224,168,0">
+      <description>%color.taken.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.current" categoryId="net.aftergit.merge.colors.current" label="%color.current" value="COLOR_LIST_SELECTION">
+      <description>%color.current.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.ai.strong" categoryId="net.aftergit.merge.colors.ai" label="%color.ai.strong" value="131,77,240">
+      <description>%color.ai.strong.description</description>
+    </colorDefinition>
+    <colorDefinition id="net.aftergit.merge.color.ai.light" categoryId="net.aftergit.merge.colors.ai" label="%color.ai.light" value="239,230,255">
+      <description>%color.ai.light.description</description>
+    </colorDefinition>
+  </extension>
+  <extension point="org.eclipse.e4.ui.css.swt.theme">
+    <stylesheet uri="css/dark.css">
+      <themeid refid="org.eclipse.e4.ui.css.theme.e4_dark"/>
+    </stylesheet>
+    <stylesheet uri="css/light.css">
+      <themeid refid="org.eclipse.e4.ui.css.theme.e4_default"/>
+      <themeid refid="org.eclipse.e4.ui.css.theme.e4_classic"/>
+      <!-- the System and High contrast themes of older Eclipse versions -->
+      <themeid refid="org.eclipse.e4.ui.css.theme.e4_system"/>
+      <themeid refid="org.eclipse.e4.ui.css.theme.high-contrast"/>
+    </stylesheet>
+  </extension>
+  <!-- the Outline view asks the editor part; the Compare editor hands that to the adapter manager (Ruling 13) -->
+  <extension point="org.eclipse.core.runtime.adapters">
+    <factory adaptableType="org.eclipse.ui.IEditorPart" class="net.aftergit.merge.ui.StructureOutlineAdapterFactory">
+      <adapter type="org.eclipse.ui.views.contentoutline.IContentOutlinePage"/>
+    </factory>
+  </extension>
+</plugin>

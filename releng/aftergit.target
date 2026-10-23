@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<!-- Optional local target platform: an installed Eclipse IDE 2026-03, selected by the profile local-eclipse when
+     the build gets -Daftergit.eclipse.home=/path/to/eclipse. The default is releng/aftergit-p2.target. -->
+<target name="aftergit">
+  <locations>
+    <location path="${system_property:aftergit.eclipse.home}" type="Profile"/>
+  </locations>
+</target>

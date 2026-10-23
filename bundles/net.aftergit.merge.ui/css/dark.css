@@ -1,0 +1,74 @@
+/* The AfterGit colours of the dark theme. Colour definitions (not preferences), so Colors and Fonts and the theme
+ * engine keep a value per theme: a change in one theme stays in that theme. */
+
+ColorDefinition#net-aftergit-merge-color-modified-strong {
+  color: rgb(122, 81, 0);
+}
+
+ColorDefinition#net-aftergit-merge-color-modified-light {
+  color: rgb(64, 56, 34);
+}
+
+ColorDefinition#net-aftergit-merge-color-added-strong {
+  color: rgb(30, 96, 30);
+}
+
+ColorDefinition#net-aftergit-merge-color-added-light {
+  color: rgb(42, 68, 42);
+}
+
+ColorDefinition#net-aftergit-merge-color-removed-strong {
+  color: rgb(128, 0, 0);
+}
+
+ColorDefinition#net-aftergit-merge-color-removed-light {
+  color: rgb(77, 58, 58);
+}
+
+ColorDefinition#net-aftergit-merge-color-conflict-strong {
+  color: rgb(140, 40, 24);
+}
+
+ColorDefinition#net-aftergit-merge-color-conflict-light {
+  color: rgb(92, 52, 46);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-strong {
+  color: rgb(60, 194, 173);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-light {
+  color: rgb(33, 66, 62);
+}
+
+ColorDefinition#net-aftergit-merge-color-auto-hatch {
+  color: rgb(42, 82, 76);
+}
+
+ColorDefinition#net-aftergit-merge-color-dropped-light {
+  color: rgb(51, 51, 51);
+}
+
+ColorDefinition#net-aftergit-merge-color-dropped-text {
+  color: rgb(119, 119, 119);
+}
+
+ColorDefinition#net-aftergit-merge-color-edited-strong {
+  color: rgb(150, 150, 190);
+}
+
+ColorDefinition#net-aftergit-merge-color-taken-strong {
+  color: rgb(201, 150, 10);
+}
+
+ColorDefinition#net-aftergit-merge-color-current {
+  color: rgb(88, 150, 240);
+}
+
+ColorDefinition#net-aftergit-merge-color-ai-strong {
+  color: rgb(160, 124, 245);
+}
+
+ColorDefinition#net-aftergit-merge-color-ai-light {
+  color: rgb(48, 38, 74);
+}

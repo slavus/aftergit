@@ -1,0 +1,6 @@
+# Corpus repositories (spec §10.3). releng/corpus.sh caches them in $AFTERGIT_CORPUS_DIR
+# (default ~/.cache/aftergit/corpus) as <name>.git; the corpus replays merges of the cached ones only.
+# name      url                                                   clone     [max=N] [path ...]
+jgit        https://github.com/eclipse-jgit/jgit.git              full
+egit        https://github.com/eclipse-egit/egit.git              full
+intellij    https://github.com/JetBrains/intellij-community.git   blobless  max=50 platform/diff-impl platform/util/diff java/java-impl

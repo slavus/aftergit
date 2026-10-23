@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AfterGit Resolve with AI
+Bundle-SymbolicName: net.aftergit.merge.ai;singleton:=true
+Bundle-Version: 0.0.1
+Bundle-Vendor: AfterGit
+Bundle-License: EPL-2.0;link="https://www.eclipse.org/legal/epl-2.0/"
+Bundle-DocURL: https://github.com/slavus/aftergit
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.equinox.security,
+ org.eclipse.ui,
+ net.aftergit.merge.core;bundle-version="0.0.1"
+Import-Package: com.google.gson;version="[2.13.0,3.0.0)",
+ com.google.gson.stream;version="[2.13.0,3.0.0)"

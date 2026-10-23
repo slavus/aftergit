@@ -1,0 +1,33 @@
+package demo;
+
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * Simple calculator.
+ */
+public class Calc {
+
+    private int precision = 3;
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public double divide(int a, int b) {
+        return b == 0 ? Double.NaN : (double) a / b;
+    }
+
+    public int sum(List<Integer> values) {
+        Objects.requireNonNull(values);
+        return values.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public String describe() {
+        return "Calc with precision " + precision;
+    }
+}

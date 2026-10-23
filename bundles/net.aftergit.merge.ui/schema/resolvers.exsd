@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema targetNamespace="net.aftergit.merge.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+  <annotation>
+    <appInfo>
+      <meta.schema plugin="net.aftergit.merge.ui" id="net.aftergit.merge.resolvers" name="AfterGit Merge Resolvers"/>
+    </appInfo>
+    <documentation>
+      Contributes automatic conflict resolvers. AfterGit runs them in the resolver and in Resolve All Simple Conflicts
+      after the import resolver and the built-in file-format resolvers and before the text resolvers. Each one has a
+      switch in the resolver's Settings menu, on by default. A resolver says which files it acts on
+      (ConflictResolver.appliesTo) and which blocks (ConflictResolver.isApplicable); what it resolves is marked
+      auto-resolved, to be reviewed, with its id as the method. One instance of each resolver serves the resolver and
+      the Resolve All jobs, so it must be stateless and thread-safe. The contributions are read once per session.
+    </documentation>
+  </annotation>
+
+  <element name="extension">
+    <annotation>
+      <appInfo>
+        <meta.element/>
+      </appInfo>
+    </annotation>
+    <complexType>
+      <sequence>
+        <element ref="resolver" minOccurs="1" maxOccurs="unbounded"/>
+      </sequence>
+      <attribute name="point" type="string" use="required"/>
+      <attribute name="id" type="string"/>
+      <attribute name="name" type="string">
+        <annotation>
+          <appInfo>
+            <meta.attribute translatable="true"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+    </complexType>
+  </element>
+
+  <element name="resolver">
+    <complexType>
+      <attribute name="id" type="string" use="required">
+        <annotation>
+          <documentation>
+            The resolver's id: equal to ConflictResolver.id(), unique, and none of imports, properties, manifest,
+            simple, greedy. It keys the switch in the preferences and is the method of what it resolves.
+          </documentation>
+        </annotation>
+      </attribute>
+      <attribute name="name" type="string" use="required">
+        <annotation>
+          <documentation>The label of the resolver's switch in Settings.</documentation>
+          <appInfo>
+            <meta.attribute translatable="true"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+      <attribute name="class" type="string" use="required">
+        <annotation>
+          <documentation>The resolver, with a public constructor without arguments.</documentation>
+          <appInfo>
+            <meta.attribute kind="java" basedOn=":net.aftergit.merge.core.resolve.ConflictResolver"/>
+          </appInfo>
+        </annotation>
+      </attribute>
+    </complexType>
+  </element>
+
+  <annotation>
+    <appInfo>
+      <meta.section type="examples"/>
+    </appInfo>
+    <documentation>
+      &lt;extension point="net.aftergit.merge.resolvers"&gt;
+        &lt;resolver id="members" name="%resolver.members.name"
+            class="net.aftergit.merge.jdt.JavaMembersResolver"/&gt;
+      &lt;/extension&gt;
+    </documentation>
+  </annotation>
+</schema>

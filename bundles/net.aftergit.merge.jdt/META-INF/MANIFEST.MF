@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AfterGit Merge JDT
+Bundle-SymbolicName: net.aftergit.merge.jdt;singleton:=true
+Bundle-Version: 0.0.1
+Bundle-Vendor: AfterGit
+Bundle-License: EPL-2.0;link="https://www.eclipse.org/legal/epl-2.0/"
+Bundle-DocURL: https://github.com/slavus/aftergit
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jface,
+ org.eclipse.jface.text,
+ org.eclipse.text,
+ org.eclipse.ui,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.ui,
+ net.aftergit.merge.core;bundle-version="0.0.1"
+Export-Package: net.aftergit.merge.jdt,
+ net.aftergit.merge.jdt.internal;x-internal:=true

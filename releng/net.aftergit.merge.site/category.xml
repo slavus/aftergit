@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+  <feature id="net.aftergit.merge.feature" version="0.0.0">
+    <category name="aftergit"/>
+  </feature>
+  <feature id="net.aftergit.merge.mcp.feature" version="0.0.0">
+    <category name="aftergit"/>
+  </feature>
+  <feature id="net.aftergit.merge.ai.feature" version="0.0.0">
+    <category name="aftergit"/>
+  </feature>
+  <category-def name="aftergit" label="AfterGit">
+    <description>AfterGit Merge Resolver: a three-pane git conflict resolver for Eclipse and EGit (https://github.com/slavus/aftergit).</description>
+  </category-def>
+</site>

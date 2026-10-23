@@ -1,0 +1,84 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+# the release and the website workflow both push to gh-pages: one at a time, never cancelled half-way
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build and publish the update site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-java@v4.7.1
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Check the tag against the project version
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          project="$(sed -n 's|^  <version>\(.*\)</version>$|\1|p' pom.xml | head -n 1)"
+          if [ "$version" != "$project" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match the project version $project" >&2
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Build
+        run: mvn -B -ntp verify
+      - name: Zip the update site
+        run: |
+          (cd releng/net.aftergit.merge.site/target/repository && zip -r -X "$GITHUB_WORKSPACE/aftergit-$VERSION-site.zip" .)
+          unzip -l "aftergit-$VERSION-site.zip"
+      - name: Release notes from CHANGELOG.md
+        run: |
+          awk -v v="$VERSION" '
+            $0 ~ "^## \\[" v "\\]" { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "CHANGELOG.md has no section for $VERSION" >&2
+            exit 1
+          fi
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "aftergit-$VERSION-site.zip" \
+            --title "AfterGit $VERSION" --notes-file release-notes.md --verify-tag
+      # gh-pages holds the website and the p2 update site, served at https://slavus.github.io/aftergit/;
+      # updates/<version>/ keeps every release and the composite in updates/ lists them all
+      - name: Check out gh-pages
+        run: |
+          pages="$RUNNER_TEMP/gh-pages"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch --no-tags --no-prune --depth=1 origin gh-pages
+            git worktree add -B gh-pages "$pages" FETCH_HEAD
+          else
+            git worktree add --orphan -b gh-pages "$pages"
+          fi
+          echo "PAGES=$pages" >> "$GITHUB_ENV"
+      - name: Publish the update site and the website
+        run: releng/publish-site.sh "$PAGES" releng/net.aftergit.merge.site/target/repository "$VERSION"
+      - name: Push gh-pages
+        run: |
+          cd "$PAGES"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo "gh-pages is up to date"
+          else
+            git commit -m "release: update site and website for $VERSION"
+            git push origin gh-pages
+          fi
