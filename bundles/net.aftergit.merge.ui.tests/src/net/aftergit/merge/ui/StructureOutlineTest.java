@@ -155,11 +155,13 @@ class StructureOutlineTest {
     IViewPart view = ConflictRepos.page().findView(IPageLayout.ID_OUTLINE);
     ConflictRepos.page().activate(view);
     Tree t = page.tree().tree();
+    // no window manager on the virtual display: activate the shell explicitly so the focus arrives
+    UiDriver.activate(t);
     t.setFocus();
-    UiDriver.flush();
-    assertTrue(t.isFocusControl(), "precondition: the Outline's tree has the focus");
+    assertTrue(MergeLayoutTest.waitFor(t::isFocusControl), "precondition: the Outline's tree has the focus");
     StructureTreeTest.click(t, t.getItem(1));
     assertEquals(1, input.viewer().selectedBlock(), "it jumped");
+    UiDriver.flush();
     assertTrue(t.isFocusControl(), "the focus stays in the Outline");
     assertSame(view, ConflictRepos.page().getActivePart(), "the Outline stays the active part");
   }
