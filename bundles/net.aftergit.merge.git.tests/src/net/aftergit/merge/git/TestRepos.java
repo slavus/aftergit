@@ -20,7 +20,19 @@ import org.eclipse.jgit.util.SystemReader;
 
 /** Builds throw-away repositories with real merge conflicts. */
 final class TestRepos {
+  // JGit measures the timestamp resolution of a file store once per JVM with a probe file in the first repository it
+  // meets (.git/objects); in the background that probe can outlive the test and keep its temporary directory from
+  // being deleted, so measure in the foreground before any repository is made
+  static {
+    FS.FileStoreAttributes.setBackground(false);
+  }
+
   private TestRepos() {}
+
+  /** An empty repository at {@code dir} on branch main, for tests that build their own history. */
+  static Git init(File dir) throws Exception {
+    return Git.init().setDirectory(dir).setInitialBranch("main").call();
+  }
 
   static void write(File dir, String path, String content) throws Exception {
     File f = new File(dir, path);
@@ -205,9 +217,6 @@ final class TestRepos {
    * conversion) behind empty files next to {@code dir}; returns the reader to put back afterwards.
    */
   static SystemReader isolateUserConfig(File dir) {
-    // JGit measures the timestamp resolution of a file store with a probe file in .git/objects; in the background
-    // that probe can still be written after a test ended and keep its temporary directory from being deleted
-    FS.FileStoreAttributes.setBackground(false);
     SystemReader original = SystemReader.getInstance();
     File empty = new File(dir.getParentFile(), "no-such-gitconfig-" + System.nanoTime());
     SystemReader.setInstance(new SystemReader.Delegate(original) {

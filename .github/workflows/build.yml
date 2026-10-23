@@ -13,6 +13,10 @@ concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: true
 
+# test files named beyond ASCII need a UTF-8 locale: Java encodes file paths in the locale's charset
+env:
+  LANG: C.UTF-8
+
 jobs:
   verify:
     name: Build and headless tests

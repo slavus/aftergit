@@ -31,6 +31,7 @@ import org.eclipse.jgit.lib.FileMode;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectInserter;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.util.FS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -40,6 +41,13 @@ import org.eclipse.ui.PlatformUI;
 
 /** A git repository with one conflicted file, opened as a workspace project; shared by the editor tests. */
 final class ConflictRepos {
+  // JGit measures the timestamp resolution of a file store once per JVM with a probe file in the first repository it
+  // meets (.git/objects); in the background that probe can outlive the test and keep its temporary directory from
+  // being deleted, so measure in the foreground before any repository is made
+  static {
+    FS.FileStoreAttributes.setBackground(false);
+  }
+
   private final File dir;
   private IProject project;
 

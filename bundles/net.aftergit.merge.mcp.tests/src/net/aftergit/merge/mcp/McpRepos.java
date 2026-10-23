@@ -28,6 +28,13 @@ public final class McpRepos {
   /** A conflict AfterGit's simple pass resolves: {base, ours, theirs}. */
   public static final String[] WORDS = {"x = 0; y = 0;\n", "x = 1; y = 0;\n", "x = 0; y = 2;\n"};
 
+  // JGit measures the timestamp resolution of a file store once per JVM with a probe file in the first repository it
+  // meets (.git/objects); in the background that probe can outlive the test and keep its temporary directory from
+  // being deleted, so measure in the foreground before any repository is made
+  static {
+    FS.FileStoreAttributes.setBackground(false);
+  }
+
   private McpRepos() {}
 
   public static void write(File dir, String path, String content) throws Exception {
@@ -117,7 +124,6 @@ public final class McpRepos {
 
   /** Hides the developer's git configuration behind empty files; returns the reader to put back afterwards. */
   public static SystemReader isolateUserConfig(File dir) {
-    FS.FileStoreAttributes.setBackground(false);
     SystemReader original = SystemReader.getInstance();
     File empty = new File(dir.getParentFile(), "no-such-gitconfig-" + System.nanoTime());
     SystemReader.setInstance(new SystemReader.Delegate(original) {

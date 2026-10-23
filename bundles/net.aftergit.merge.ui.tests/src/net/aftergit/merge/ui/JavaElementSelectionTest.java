@@ -20,12 +20,18 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.util.FS;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 /** Selections such as JDT compilation units adapt to IResource only, never to IFile. */
 class JavaElementSelectionTest {
+  // no background probe file of JGit in the temporary directory (see ConflictRepos)
+  static {
+    FS.FileStoreAttributes.setBackground(false);
+  }
+
   @TempDir
   File dir;
   IProject project;

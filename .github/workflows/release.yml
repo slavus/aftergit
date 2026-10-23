@@ -12,6 +12,10 @@ concurrency:
   group: gh-pages
   cancel-in-progress: false
 
+# test files named beyond ASCII need a UTF-8 locale: Java encodes file paths in the locale's charset
+env:
+  LANG: C.UTF-8
+
 jobs:
   release:
     name: Build and publish the update site
@@ -35,6 +39,16 @@ jobs:
           echo "VERSION=$version" >> "$GITHUB_ENV"
       - name: Build
         run: mvn -B -ntp verify
+      # job logs need a signed-in reader; the reports show which test failed to anyone
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: release-test-reports
+          path: |
+            **/target/surefire-reports
+            **/target/work/data/.metadata/.log
+          if-no-files-found: ignore
       - name: Zip the update site
         run: |
           (cd releng/net.aftergit.merge.site/target/repository && zip -r -X "$GITHUB_WORKSPACE/aftergit-$VERSION-site.zip" .)

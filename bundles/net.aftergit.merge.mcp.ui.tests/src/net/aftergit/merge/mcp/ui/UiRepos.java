@@ -21,6 +21,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryCache;
+import org.eclipse.jgit.util.FS;
 import org.eclipse.jgit.util.FileUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
@@ -31,6 +32,13 @@ final class UiRepos {
   static final String BASE = "a\nb\nc\nd\ne\n";
   static final String OURS = "a\nL1\nc\nL3\ne\n";
   static final String THEIRS = "a\nR1\nc\nR3\ne\n";
+
+  // JGit measures the timestamp resolution of a file store once per JVM with a probe file in the first repository it
+  // meets (.git/objects); in the background that probe can outlive the test and keep its temporary directory from
+  // being deleted, so measure in the foreground before any repository is made
+  static {
+    FS.FileStoreAttributes.setBackground(false);
+  }
 
   private UiRepos() {}
 

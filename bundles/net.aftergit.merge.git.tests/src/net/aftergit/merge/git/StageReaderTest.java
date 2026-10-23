@@ -56,7 +56,7 @@ class StageReaderTest {
 
   /** Like TestRepos.conflict, with raw bytes. */
   private Repository conflictBytes(String path, byte[] base, byte[] ours, byte[] theirs) throws Exception {
-    Git git = Git.init().setDirectory(dir).setInitialBranch("main").call();
+    Git git = TestRepos.init(dir);
     File f = new File(dir, path);
     Files.write(f.toPath(), base);
     git.add().addFilepattern(path).call();
