@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AfterGit Merge Resolver for Eclipse</title>
+<meta name="description" content="AfterGit is a three-pane git conflict resolver for the Eclipse IDE and EGit: ours, the result and theirs side by side, with safe automatic resolution you can review.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1" y="4" width="8" height="24" rx="2" fill="#2f8a4c"/><rect x="12" y="4" width="8" height="24" rx="2" fill="#0f766e"/><rect x="23" y="4" width="8" height="24" rx="2" fill="#b4561e"/></svg>
+      AfterGit
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html" aria-current="page">Overview</a></li>
+        <li><a href="install.html">Install</a></li>
+        <li><a href="usage.html">Quick start</a></li>
+        <li><a href="https://github.com/slavus/aftergit">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <span class="badge">Version 0.0.1 &middot; first public release</span>
+      <h1 id="title">Resolve git conflicts in Eclipse, three panes at a time</h1>
+      <p class="lead">AfterGit is a three-pane merge resolver for the Eclipse IDE that plugs into EGit. A double-click
+        on a conflicting file in Git Staging opens ours, the result and theirs side by side, resolves what can be
+        resolved safely on its own, and leaves every automatic decision visible until you review it.</p>
+      <div class="actions">
+        <a class="button primary" href="install.html">Install AfterGit</a>
+        <a class="button secondary" href="usage.html">Quick start</a>
+        <a class="button secondary" href="https://github.com/slavus/aftergit">Source on GitHub</a>
+      </div>
+      <figure class="shot">
+        <picture>
+          <source srcset="images/resolver-dark.png" media="(prefers-color-scheme: dark)" width="1177" height="597">
+          <img src="images/resolver-light.png" width="1528" height="941"
+             alt="The AfterGit resolver in Eclipse: ours on the left, the result in the middle and theirs on the right, joined by connectors, with changed words highlighted and the toolbar above.">
+        </picture>
+        <figcaption>Ours | Result | Theirs with connectors, changed words in a stronger shade and the toolbar with
+          Save &amp; Mark Resolved.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 id="features">Features</h2>
+      <ul class="features">
+        <li>
+          <h3>Three panes with connectors</h3>
+          <p>Ours | Result | Theirs (or Left + Result, Result + Right, Result Below), full-line change colours with
+            the changed words in a stronger shade, an overview stripe and one shared scroll bar. &raquo; / &laquo;
+            take a side, &times; ignores; Take Both, Revert Block and undo/redo that includes block states.</p>
+        </li>
+        <li>
+          <h3>Auto-resolution you can review</h3>
+          <p>Non-conflicting changes, word-level merges and an optional greedy pass run when a file opens.
+            Auto-resolved blocks are teal with an &ldquo;A&rdquo; and stay hatched until you mark them reviewed;
+            Revert and Re-run take them back.</p>
+        </li>
+        <li>
+          <h3>Structure-aware resolvers</h3>
+          <p>Java imports and class members, <code>.properties</code> files per key, <code>MANIFEST.MF</code> per
+            header and clause, and an optional &ldquo;Newer version wins&rdquo; for build descriptors such as
+            <code>pom.xml</code>. Other plug-ins can add resolvers through an extension point.</p>
+        </li>
+        <li>
+          <h3>Java support</h3>
+          <p>With JDT the result is a real Java editor with live errors, quick fix and content assist. Imports are
+            fixed after a take, and an auto-resolved block that adds a compile error gets a red frame.</p>
+        </li>
+        <li>
+          <h3>Resolve All Simple Conflicts</h3>
+          <p>For files, folders, projects or a whole repository, in the background, with a summary, &ldquo;Stage
+            Resolved Files&rdquo; and &ldquo;Undo Resolve All&rdquo;.</p>
+        </li>
+        <li>
+          <h3>Every kind of conflict</h3>
+          <p>Text conflicts in the resolver; binary and modify/delete conflicts with Keep Ours, Keep Theirs or Delete
+            File. Saving with open conflicts writes markers in the repository&rsquo;s
+            <code>merge.conflictStyle</code>.</p>
+        </li>
+        <li>
+          <h3>Structure compare</h3>
+          <p>A Structure column (and the Outline view) lists the members ours or theirs changed, who changed them and
+            the state of their blocks, for Java, <code>.properties</code> and <code>MANIFEST.MF</code>.</p>
+        </li>
+        <li>
+          <h3>Other languages</h3>
+          <p>With tm4e and lsp4e: TextMate syntax colours in all three panes and the errors of the file&rsquo;s
+            language server (Wild Web Developer, LemMinX and others) in the result.</p>
+        </li>
+        <li>
+          <h3>Fits into EGit</h3>
+          <p>Optionally the Merge Tool of Git Staging, &ldquo;Resolve in AfterGit&hellip;&rdquo; in the explorers and
+            the Team menu, Save &amp; Mark Resolved (save, <code>git add</code>, close) and markers on files that
+            still need attention.</p>
+        </li>
+        <li>
+          <h3>Preferences and themes</h3>
+          <p>Workspace and project settings (shareable through <code>.settings</code>), colour schemes for light and
+            dark themes including a colour-blind safe and a high-contrast one, and key bindings for every command.</p>
+        </li>
+        <li>
+          <h3>Optional AI, off by default</h3>
+          <p><em>Resolve with AI</em> asks a language model (the Anthropic Messages API or an OpenAI-compatible
+            server such as OpenAI, Ollama or LM Studio) to resolve a conflict. <em>AI agents (MCP)</em> runs a local
+            Model Context Protocol server for agents you run yourself. Nothing is sent until you allow it, and every
+            answer is a proposal you review.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="screens">
+      <h2 id="screens">Screenshots</h2>
+      <div class="gallery">
+        <figure>
+          <img src="images/resolver-dark.png" width="1177" height="597" loading="lazy"
+               alt="The resolver in Eclipse's dark theme, with the same three panes, connectors and change colours adapted to the dark background.">
+          <figcaption>The dark theme has its own colours and toolbar icons.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/structure.png" width="1528" height="941" loading="lazy"
+               alt="The Structure column to the left of the panes, listing the changed members with who changed them and a chip for the state of their blocks.">
+          <figcaption>The Structure column lists the changed members and the state of their blocks.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 id="requirements">Requirements</h2>
+      <ul class="req">
+        <li>Eclipse IDE 2026-03 (4.39) or later.</li>
+        <li>Java 21 or later to run Eclipse.</li>
+        <li>EGit and JGit 7.6 or later (part of the Eclipse IDE packages).</li>
+        <li>Optional: the Java development tools (JDT) for the Java support.</li>
+        <li>Optional: TextMate support (tm4e 0.17.2 or later) and the Language Server Protocol client (lsp4e 0.19.8
+          or later) for other languages.</li>
+        <li>Tested on Linux (GTK). The bundles are plain Java and SWT, but Windows and macOS are not tested yet.</li>
+      </ul>
+      <div class="note">
+        <p><strong>Early release.</strong> 0.0.1 is used on real merges but is young: review the result before you
+          commit. Known limitations are listed in the
+          <a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">changelog</a>; please report problems
+          in the <a href="https://github.com/slavus/aftergit/issues">issue tracker</a>.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="https://github.com/slavus/aftergit">GitHub</a></li>
+      <li><a href="https://github.com/slavus/aftergit/releases">Releases</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/CHANGELOG.md">Changelog</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/docs/INSTALL.md">User guide</a></li>
+      <li><a href="https://github.com/slavus/aftergit/issues">Issues</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/LICENSE">License (EPL-2.0)</a></li>
+      <li><a href="https://github.com/slavus/aftergit/blob/main/NOTICE">NOTICE</a></li>
+    </ul>
+    <p>Copyright &copy; 2026 Hrvoje Slavicek and the AfterGit contributors. AfterGit is licensed under the Eclipse
+      Public License 2.0; parts of the merge core are derived from IntelliJ Community and stay under the Apache
+      License, Version 2.0 (see NOTICE).</p>
+    <p>Eclipse is a trademark of the Eclipse Foundation. AfterGit is not affiliated with or endorsed by the Eclipse
+      Foundation.</p>
+  </div>
+</footer>
+</body>
+</html>
